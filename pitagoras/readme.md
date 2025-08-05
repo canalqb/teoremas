@@ -1,80 +1,92 @@
-📐 **Projeto: Gerador de Ternas Pitagóricas** 
----
+# Gerador de Ternas Pitagóricas
 
-🎯 **Descrição**
-
-Este script Python gera todas as **ternas pitagóricas primitivas** $a, b, c$ dentro de um intervalo especificado de valores de **hipotenusa $c$**.
-
-Uma *terna pitagórica* satisfaz a equação:
-**a² + b² = c²**, com **a**, **b** e **c** inteiros positivos.
-
-O algoritmo utiliza a fórmula clássica para gerar ternas pitagóricas primitivas:
-
-* a = m² - n²
-* b = 2mn
-* c = m² + n²
-
-Com *m > n*, *(m - n) ímpar* e *m, n coprimos* (i.e., gcd(m, n) = 1).
+Este script gera ternas pitagóricas primitivas e não primitivas dentro de intervalos específicos baseados em potências de 2. Além de imprimir as ternas encontradas, ele também exporta os resultados em arquivos `.csv` e `.json`, e gera uma visualização gráfica dos pares `(a, b)`.
 
 ---
 
-⚙️ **Funcionamento**
+## Funcionalidades
 
-O script percorre os valores de **m** e **n** para gerar ternas primitivas e verifica se o valor de **c** está dentro de um intervalo desejado.
-No trecho incluído, os intervalos são definidos como potências de 2:
+* Geração de ternas pitagóricas **primitivas** usando o método de Euclides.
+* Opção para gerar também ternas **não primitivas** (múltiplos das primitivas).
+* Geração de ternas em intervalos de hipotenusas delimitados por potências de 2 (ex: entre $2^c$ e $2^{c+1} - 1$).
+* Exportação dos resultados para arquivos:
 
-* 2⁰ a 2¹ − 1
-* 2¹ a 2² − 1
-* 2² a 2³ − 1
-* ...
-* até 2⁹ a 2¹⁰ − 1
-
-Para cada intervalo, o programa imprime todas as ternas $(a, b, c)$ encontradas.
+  * `ternas_pitagoricas.csv` (formato tabular)
+  * `ternas_pitagoricas.json` (formato estruturado)
+* Visualização gráfica dos valores `a` e `b` usando Matplotlib.
 
 ---
 
-📦 **Saída esperada**
+## Requisitos
 
-Para cada intervalo, o script imprime:
+* Python 3.6 ou superior
+* Biblioteca `matplotlib` (para geração do gráfico)
 
-`<potência> -> a = <valor>, b = <valor>, c = <valor>`
+Instalação do Matplotlib (caso não tenha):
 
-Exemplo:
-
-```
-3 -> a = 7, b = 24, c = 25
-4 -> a = 15, b = 8, c = 17
+```bash
+pip install matplotlib
 ```
 
 ---
 
-🧠 **Aplicações**
+## Uso
 
-* Ensino de matemática
-* Demonstração visual de conceitos de geometria
-* Verificação de propriedades numéricas
-* Criação de conjuntos de dados matemáticos
+Basta executar o script:
 
----
+```bash
+python seu_script.py
+```
 
-🛠️ **Requisitos**
+O script:
 
-* Python 3.x
-* Nenhuma biblioteca externa (usa apenas `math.gcd`)
-
----
-
-📈 **Possíveis melhorias futuras**
-
-* Exportar as ternas para arquivos `.csv` ou `.json`
-* Gerar também *ternas não primitivas*
-* Adicionar interface gráfica ou visualização interativa
-* Visualizar ternas em um gráfico cartesiano
+1. Gera ternas para $c$ de 0 a 9, com hipotenusas entre $2^c$ e $2^{c+1} - 1$.
+2. Imprime as ternas no terminal.
+3. Exporta os resultados para `ternas_pitagoricas.csv` e `ternas_pitagoricas.json`.
+4. Mostra um gráfico dos pares `(a, b)` das ternas encontradas.
 
 ---
 
-💡 *Este script é ideal para quem deseja explorar os números inteiros sob uma ótica geométrica e algébrica ao mesmo tempo!*
+## Configurações
 
+Dentro da função `main()`, você pode configurar:
+
+* `incluir_nao_primitivas = True`
+  Para gerar ternas primitivas **e** seus múltiplos (não primitivas).
+
+* `incluir_nao_primitivas = False`
+  Para gerar somente ternas primitivas.
+
+---
+
+## Como funciona
+
+O script usa o método clássico para gerar ternas pitagóricas primitivas:
+
+$$
+a = m^2 - n^2, \quad b = 2mn, \quad c = m^2 + n^2
+$$
+
+onde $m > n > 0$, $m$ e $n$ são coprimos e $m - n$ é ímpar.
+
+Se a opção de não primitivas estiver ativada, ele gera múltiplos das ternas primitivas encontradas.
+
+---
+
+## Estrutura dos arquivos exportados
+
+* **CSV:** Colunas com o intervalo da hipotenusa, e os valores $a$, $b$, $c$.
+* **JSON:** Objeto com as chaves como intervalos e valores como listas de ternas representadas por dicionários `{a, b, c}`.
+
+---
+
+## Exemplo de saída no terminal
+
+```
+2–3 -> a = 3, b = 4, c = 5
+4–7 -> a = 8, b = 6, c = 10
+...
+```
 ---
 
 ## 📬 Contato
