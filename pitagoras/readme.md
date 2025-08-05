@@ -1,10 +1,4 @@
----
-
-📐 **Projeto: Gerador de Ternas Pitagóricas**
-*Autor: Você*
-*Linguagem: Python 3*
-🚀 *Status: Em desenvolvimento*
-
+📐 **Projeto: Gerador de Ternas Pitagóricas** 
 ---
 
 🎯 **Descrição**
@@ -80,3 +74,12 @@ Exemplo:
 ---
 
 💡 *Este script é ideal para quem deseja explorar os números inteiros sob uma ótica geométrica e algébrica ao mesmo tempo!*
+
+---
+
+## 📬 Contato
+
+Feito por [CanalQb no GitHub](https://github.com/canalqb)
+Visite o blog: [canalqb.blogspot.com](https://canalqb.blogspot.com/)
+💸 Apoie o projeto via Bitcoin: `13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava`
+
