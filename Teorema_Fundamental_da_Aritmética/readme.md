@@ -12,7 +12,7 @@ Ou seja, não importa como você chegue até a fatoração — o resultado *semp
 
 ## 🔍 **Explorando na prática com Python!**
 
-O script `teorema_fundamental_da_aritmética.py` nos mostra como esse teorema funciona na prática. Ele percorre *intervalos de números crescentes* e exibe a **fatoração em primos** de cada um deles. 🧠💻
+O script `teorema_fundamental_da_aritmetica.py` nos mostra como esse teorema funciona na prática. Ele percorre *intervalos de números crescentes* e exibe a **fatoração em primos** de cada um deles. 🧠💻
 
 ### 📂 Como funciona o script?
 
