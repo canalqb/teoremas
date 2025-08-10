@@ -60,10 +60,6 @@ Para testes mais confiáveis, podemos usar múltiplas bases ou métodos avançad
 
 ---
 
-Quer que eu te ajude a criar um script mais completo para explorar tudo isso? 🚀
-
---- 
-
 ## 📬 Contato
 
 * Feito por CanalQb no GitHub 
