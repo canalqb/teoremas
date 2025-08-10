@@ -1,87 +1,61 @@
-E quer aplicar **a ideia de Euclides sobre a infinitude dos primos** para **analisar ou calcular valores em cada intervalo**. Vamos detalhar isso passo a passo.
+# Infinitude dos primos
 
----
+Este repositório contém uma implementação em Python que ilustra, de forma prática, a **infinitude dos números primos**, conforme demonstrado por **Euclides** por volta de 300 a.C.
 
-## 🔍 Etapa 1: Definição dos Intervalos
+Através de uma abordagem computacional simples, o script `Infinitude_dos_primos.py` simula o argumento clássico:  
+> "Seja uma lista de primos conhecidos. Multiplicando todos eles e somando 1 ao produto, o número resultante ou é primo, ou possui fatores primos que não estavam na lista inicial."
 
-Para $i = 0$ até $i = 10$, os intervalos são:
+## Objetivo
 
-| ID $i$ | Intervalo $[2^i,\ 2^{i+1} - 1]$ | Tamanho |
-| ------ | ------------------------------- | ------- |
-| 0      | \[1, 1]                         | 1       |
-| 1      | \[2, 3]                         | 2       |
-| 2      | \[4, 7]                         | 4       |
-| 3      | \[8, 15]                        | 8       |
-| 4      | \[16, 31]                       | 16      |
-| 5      | \[32, 63]                       | 32      |
-| 6      | \[64, 127]                      | 64      |
-| 7      | \[128, 255]                     | 128     |
-| 8      | \[256, 511]                     | 256     |
-| 9      | \[512, 1023]                    | 512     |
-| 10     | \[1024, 2047]                   | 1024    |
+Demonstrar que:
+- Sempre é possível encontrar mais primos além de uma lista finita conhecida.
+- O conjunto dos números primos é infinito.
 
----
+## Como o Script Funciona
 
-## 🧠 Etapa 2: O que calcular em cada intervalo?
+O script realiza os seguintes passos:
 
-Aqui estão algumas ideias que **relacionam-se ao Teorema de Euclides**:
+1. **Geração de primos**: Utiliza o Crivo de Eratóstenes para gerar todos os primos dentro de intervalos da forma `[2^i, 2^{i+1} - 1]`, para `i` de 0 até 4.
+2. **Atualização do conjunto de primos conhecidos**: Os primos encontrados são acumulados em um conjunto.
+3. **Produto dos primos + 1 (Euclides)**: Calcula o produto de todos os primos conhecidos até o momento e adiciona 1.
+4. **Verificação de primalidade**: Checa se o número resultante (`produto + 1`) é primo ou composto.
+5. **Exibição em tabela**: Apresenta uma tabela com o intervalo avaliado, a quantidade de primos encontrados e o resultado da verificação do número `produto + 1`.
 
-### ✔ A. Contar quantos **números primos** existem em cada intervalo
+### Exemplo de Saída
 
-Essa é a mais direta ligação com a infinitude dos primos: mesmo em intervalos crescentes, sempre haverá **novos primos**. Você pode contar quantos primos existem em cada um.
+```bash
+* ID | Intervalo | Qtd. de Primos | Produto + 1 (Euclides)
+* 0 | [1, 1]:^17 | 0 | -
+* 1 | [2, 3]:^17 | 2 | 7 (Primo)
+* 2 | [4, 7]:^17 | 1 | 43 (Primo)
+* 3 | [8, 15]:^17 | 2 | 1807 (Primo)
+* 4 | [16, 31]:^17 | 5 | 3263443 (Primo) 
+```
 
-### ✔ B. Verificar se há **ao menos um primo** em cada intervalo
+> Observação: a saída acima é apenas um exemplo e pode variar conforme o número de intervalos analisados.
 
-Esse é um uso mais básico, mas importante, pois reforça o conceito de que **primos continuam aparecendo** indefinidamente.
+## Arquivo Principal
 
-### ✔ C. Aplicar ideia euclidiana no intervalo
+### [`Infinitude_dos_primos.py`](./Infinitude_dos_primos.py)
 
-Inspirado por Euclides, você pode pegar todos os primos conhecidos **até o final de um intervalo anterior**, multiplicá-los, somar 1, e ver se o resultado cai **no próximo intervalo**, ou se ele gera um novo primo fora do intervalo.
+Contém todo o código para:
+- Gerar primos com o Crivo de Eratóstenes.
+- Calcular o produto dos primos.
+- Verificar se `produto + 1` é primo.
+- Exibir os resultados em formato de tabela.
 
----
+## Requisitos
 
-## 🔢 Exemplo prático: Primos por intervalo (B)
+- Python 3.6+
+- Nenhuma biblioteca externa é necessária (apenas `math`, da biblioteca padrão).
 
-Vamos contar os primos em cada intervalo de $i = 0$ a $i = 10$:
+## Como Executar
 
-| ID $i$ | Intervalo     | Primos no intervalo                                      | Quantidade |
-| ------ | ------------- | -------------------------------------------------------- | ---------- |
-| 0      | \[1, 1]       | — (1 não é primo)                                        | 0          |
-| 1      | \[2, 3]       | 2, 3                                                     | 2          |
-| 2      | \[4, 7]       | 5, 7                                                     | 2          |
-| 3      | \[8, 15]      | 11, 13                                                   | 2          |
-| 4      | \[16, 31]     | 17, 19, 23, 29, 31                                       | 5          |
-| 5      | \[32, 63]     | 37, 41, 43, 47, 53, 59, 61                               | 7          |
-| 6      | \[64, 127]    | 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127 | 13         |
-| 7      | \[128, 255]   | muitos (inclui 131, 137, ..., 251)                       | 41         |
-| 8      | \[256, 511]   | (ainda mais, ex: 257, 263, ..., 509)                     | 75         |
-| 9      | \[512, 1023]  | —                                                        | 135        |
-| 10     | \[1024, 2047] | —                                                        | 233        |
-
-*(Valores acima de $i = 6$ foram consultados por aproximação com tabela ou crivo.)*
-
----
-
-## 🧪 Aplicação Euclidiana em Intervalos
-
-Você pode testar a ideia de Euclides para gerar **novos primos fora de cada intervalo**:
-
-1. Para $i = 2$, considere os primos ≤ 7: $2, 3, 5, 7$
-2. Multiplique: $2 \cdot 3 \cdot 5 \cdot 7 = 210$
-3. Adicione 1: $211$
-4. Resultado: $211$ é **primo**, e está **fora** do intervalo de ID = 2 (pois 211 > 7)
-
-Isso demonstra como mesmo com todos os primos dentro de um intervalo, podemos **criar um novo primo** — reforçando a **infinitude dos primos**.
-
----
-
-## 🧠 Conclusão
-
-* Os intervalos $[2^i, 2^{i+1} - 1]$ crescem exponencialmente.
-* Em **todos os intervalos a partir de $i = 1$**, há pelo menos um número primo.
-* **A quantidade de primos aumenta** com os intervalos, embora mais lentamente.
-* A ideia de Euclides (produto dos primos + 1) pode ser usada para **criar novos primos fora de qualquer intervalo finito**, mostrando que sempre haverá mais além.
-
+```bash
+python Infinitude_dos_primos.py
+Licença
+Este projeto está licenciado sob a MIT License.
+``` 
 ---
 
 ## 📬 Contato
