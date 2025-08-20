@@ -1,4 +1,4 @@
-# README - Modelagem e Previsão com Neyman–Pearson 🎯📊
+Modelagem e Previsão com Neyman–Pearson 🎯📊
 
 ## O que é o Teorema de Neyman–Pearson? 🤔
 
