@@ -1,4 +1,4 @@
-📊 Teorema de Feller — Análise de Meios Ajustados em Intervalos Binários
+## 📊 Teorema de Feller — Análise de Meios Ajustados em Intervalos Binários
 
 Este script Python analisa e reproduz uma tabela de intervalos baseados em potências de 2, comparando a média ajustada fornecida (como o número 49 no intervalo [32, 63]) com a média teórica exata dos intervalos. Ele é fundamentado no Teorema de Feller, aplicado à convergência de médias em distribuições discretas.
 
