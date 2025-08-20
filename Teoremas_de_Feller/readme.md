@@ -1,4 +1,4 @@
-## 📊 Teorema de Feller — Análise de Meios Ajustados em Intervalos Binários
+# 📊 Teorema de Feller — Análise de Meios Ajustados em Intervalos Binários
 
 Este script Python analisa e reproduz uma tabela de intervalos baseados em potências de 2, comparando a média ajustada fornecida (como o número 49 no intervalo [32, 63]) com a média teórica exata dos intervalos. Ele é fundamentado no Teorema de Feller, aplicado à convergência de médias em distribuições discretas.
 
@@ -88,7 +88,6 @@ Este projeto é de domínio público, livre para fins acadêmicos, estatísticos
 
 ## 📬 Contato
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com 
-* 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+- **Autor**: [CanalQb no GitHub](https://github.com/CanalQb)  
+- **Blog**: [canalqb.blogspot.com](https://canalqb.blogspot.com)  
+- 💸 **Apoie via Bitcoin**: `13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava`
