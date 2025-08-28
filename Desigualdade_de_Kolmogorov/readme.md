@@ -1,9 +1,3 @@
-Claro! Vou deixar o README mais informativo, didático e com um tom mais leve e animado, usando emojis para dar aquele toque especial! 😄🚀
-
----
-
-# README
-
 # 🎲 Desigualdade de Kolmogorov: Controle de Desvios nas Somatórias Aleatórias 🚀
 
 ---
