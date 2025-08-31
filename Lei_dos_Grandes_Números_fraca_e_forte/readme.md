@@ -17,8 +17,7 @@ Este repositório demonstra a **Lei dos Grandes Números** (tanto na forma **fra
 - [📊 Exemplo de saída](#-exemplo-de-saída)
 - [▶️ Como executar](#️-como-executar)
 - [📌 Observações](#-observações)
-- [📖 Referências](#-referências)
-- [👨‍💻 Autor](#-autor)
+- [📖 Referências](#-referências) 
 
 ---
 
@@ -114,15 +113,7 @@ python lei_dos_grandes_numeros.py
 * 📘 *A First Course in Probability* – Sheldon Ross
 * 📘 [Khan Academy: LGN](https://pt.khanacademy.org/math/statistics-probability/probability-library)
 
----
-
-## 👨‍💻 Autor
-
-**Seu Nome Aqui**
-📧 \[[email@email.com](mailto:email@email.com)]
-🔗 [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/)
-
----
+--- 
 
 📝 Licenciado sob a [MIT License](LICENSE)
 
