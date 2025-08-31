@@ -113,23 +113,9 @@ python lei_dos_grandes_numeros.py
 * 📘 *A First Course in Probability* – Sheldon Ross
 * 📘 [Khan Academy: LGN](https://pt.khanacademy.org/math/statistics-probability/probability-library)
 
---- 
+---  
 
-📝 Licenciado sob a [MIT License](LICENSE)
-
-```
-
----
-
-### ✅ Próximos passos
-
-- Substitua os links e o nome do autor com suas informações reais.
-- Se desejar, inclua uma imagem do gráfico gerado no final do README (`![Gráfico](./img/saida.png)`).
-- Adicione um `LICENSE` ao projeto (MIT, GPL etc.).
-
-Se quiser, posso gerar automaticamente o gráfico, salvar como imagem, e ajudar a montar esse repositório GitHub completo. Deseja isso?
-```
-
+📝 Licenciado sob a [MIT License](LICENSE) 
 ---
   
 ## 📬 Contato
