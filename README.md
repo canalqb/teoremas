@@ -5,6 +5,10 @@ Este projeto tem como foco a exploração matemática e computacional de teorema
 
 > 📌 Nosso objetivo é aplicar **Python**, **teoremas matemáticos**, análise de padrões e visualizações para tentar decifrar ou entender as estruturas por trás do desafio.
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Build Status](https://github.com/canalqb/teoremas/actions/workflows/python-package-conda.yml/badge.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/canalqb/teoremas)
+
 ---
 
 ## 📋 Sumário
