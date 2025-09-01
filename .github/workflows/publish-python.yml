@@ -1,0 +1,43 @@
+name: Publicar Pacote Python
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.8.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8.10'
+
+      - name: Atualizar pip e instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Rodar testes com pytest
+        run: |
+          pip install pytest
+          pytest
+
+      - name: Instalar ferramentas de build e twine
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Construir pacote
+        run: python -m build
+
+      - name: Publicar pacote no PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          python-version: '3.8.10'
