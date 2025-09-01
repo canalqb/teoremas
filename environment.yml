@@ -1,7 +1,6 @@
 name: teoremas
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python
   - pip
