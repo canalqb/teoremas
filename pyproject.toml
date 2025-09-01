@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teoremas"
+version = "0.1.0"
+description = "Pacote com teoremas matemáticos"
+authors = [{name = "Seu Nome", email = "seu@email.com"}]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
