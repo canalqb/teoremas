@@ -4,6 +4,9 @@ channels:
   - defaults
 dependencies:
   - python
+  - pip
+  - flake8
+  - pytest
   - matplotlib
   - numpy
   - pandas
@@ -12,6 +15,5 @@ dependencies:
   - scipy
   - scikit-learn
   - sympy
-  - pip
   - pip:
-      - bit
+    - bit
