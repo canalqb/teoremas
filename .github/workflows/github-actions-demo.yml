@@ -1,7 +1,7 @@
 name: CanalQb GitHub Actions Demo
 run-name: ${{ github.actor }} está testando GitHub Actions no repositório teoremas 🚀
-on: 
-  - push
+on:
+  push
 
 jobs:
   demo-job:
