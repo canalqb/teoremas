@@ -1,5 +1,4 @@
-bit
-collections
+bit 
 dataclasses
 decimal
 matplotlib
