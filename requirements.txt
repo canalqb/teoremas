@@ -1,6 +1,4 @@
-bit 
-dataclasses
-decimal
+bit
 matplotlib
 numpy
 pandas
