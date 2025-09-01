@@ -25,10 +25,11 @@ jobs:
 
       - name: Create and activate environment from environment.yml 
         run: |
-          conda env remove -n teoremas -y || echo "No existing env to remove"
           conda env create --file environment.yml
+          source $(conda info --base)/etc/profile.d/conda.sh
           conda activate teoremas
-          python --version  # Confirmar versão instalada
+          python --version
+
 
       - name: Install additional dependencies (optional)
         run: |
