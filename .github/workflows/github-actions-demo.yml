@@ -1,0 +1,21 @@
+name: CanalQb GitHub Actions Demo
+run-name: ${{ github.actor }} está testando GitHub Actions no repositório teoremas 🚀
+on: [push]
+jobs:
+  demo-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mensagem inicial
+        run: echo "🎉 Olá! Este job foi disparado automaticamente pelo evento ${{ github.event_name }}."
+      - name: Informação do servidor
+        run: echo "🐧 Este job está rodando no sistema ${{ runner.os }} hospedado pelo GitHub."
+      - name: Informações do repositório
+        run: echo "🔎 Branch atual: ${{ github.ref }} | Repositório: ${{ github.repository }}"
+      - name: Clonar código do repositório
+        uses: actions/checkout@v4
+      - name: Confirmar clonagem
+        run: echo "💡 O repositório teoremas foi clonado para o runner."
+      - name: Listar arquivos
+        run: ls ${{ github.workspace }}
+      - name: Mensagem final com canal
+        run: echo "🚀 Obrigado por contribuir com o CanalQb! Visite https://www.youtube.com/@canalqb para mais conteúdos."
