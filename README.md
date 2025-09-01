@@ -7,25 +7,101 @@ Este projeto tem como foco a exploração matemática e computacional de teorema
 
 ---
 
+## 📋 Sumário
+
+- [✨ O que você encontrará aqui](#-o-que-você-encontrará-aqui)  
+- [📦 Pré-requisitos](#-pré-requisitos)  
+- [📦 Instalação](#-instalação)  
+- [🚀 Como contribuir](#-como-contribuir)  
+- [🚀 Como rodar os scripts](#-como-rodar-os-scripts)  
+- [🧪 Testes](#-testes)  
+- [🐛 Reportar problemas](#-reportar-problemas)  
+- [📬 Contato e comunidade](#-contato-e-comunidade)  
+- [📄 Licença](#-licença)
+
+---
+
 ## ✨ O que você encontrará aqui
 
-- 🧮 Implementações de teoremas clássicos (Fermat, Kolmogorov, Euler, etc.)
-- 🧩 Scripts que aplicam matemática à análise do 1000 BTC Puzzle
-- 📊 Visualizações interativas com `matplotlib` e `plotly`
-- 🧠 Explorações com `sympy`, `scipy`, `sklearn` e outras libs científicas
-- 📚 Código organizado por teorema, com foco educacional e investigativo
+- 🧮 Implementações de teoremas clássicos (Fermat, Kolmogorov, Euler, etc.)  
+- 🧩 Scripts que aplicam matemática à análise do 1000 BTC Puzzle  
+- 📊 Visualizações interativas com `matplotlib` e `plotly`  
+- 🧠 Explorações com `sympy`, `scipy`, `sklearn` e outras libs científicas  
+- 📚 Código organizado por teorema, com foco educacional e investigativo  
+
+---
+
+## 📦 Pré-requisitos
+
+- Python 3.8 ou superior  
+- `pip` ou `conda` para gerenciar pacotes  
+- Recomendamos uso de ambiente virtual (`venv`, `virtualenv` ou `conda`)
 
 ---
 
 ## 📦 Instalação
 
-Clone o repositório e instale as dependências:
+Clone o repositório:
 
 ```bash
 git clone https://github.com/canalqb/teoremas.git
 cd teoremas
-pip install -r requirements.txt
 ````
+
+### Com pip + venv
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+pip install -r requirements.txt
+```
+
+### Com conda
+
+```bash
+conda env create -f environment.yml
+conda activate teoremas
+```
+
+---
+
+## 🚀 Como rodar os scripts
+
+Os scripts estão organizados por teoremas, dentro de suas respectivas pastas.
+
+Exemplo:
+
+```bash
+python Carmichael/exemplo_script.py
+```
+
+Para notebooks, abra via Jupyter:
+
+```bash
+jupyter notebook
+# Navegue até a pasta desejada e abra o notebook
+```
+
+---
+
+## 🧪 Testes
+
+Os testes automáticos usam o `pytest`. Para rodá-los:
+
+```bash
+pytest tests/
+```
+
+Garantimos que os principais scripts estejam cobertos para facilitar manutenção.
+
+---
+
+## 🐛 Reportar problemas
+
+Se encontrar algum bug ou quiser sugerir melhorias, abra uma [issue](https://github.com/canalqb/teoremas/issues) no repositório.
+
+Por favor, seja claro(a) e forneça passos para reproduzir o problema.
 
 ---
 
@@ -44,23 +120,6 @@ Contribuições possíveis:
 
 ---
 
-## 🧪 Estrutura atual (parcial)
-
-O repositório está organizado por pastas com nomes de teoremas:
-
-```
-teoremas/
-├── Carmichael/
-├── Teorema_de_Bayes/
-├── Teorema_Central_do_Limite/
-├── KolmogorovComplexity/
-├── ...
-```
-
-Cada pasta contém notebooks, scripts ou estudos referentes ao tema.
-
----
-
 ## 📬 Contato e comunidade
 
 * 📧 Email: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
@@ -72,12 +131,18 @@ Cada pasta contém notebooks, scripts ou estudos referentes ao tema.
 
 ## 📄 Licença
 
-Este projeto é de código aberto sob a licença [Apache 2.0](LICENSE), com fins educacionais e experimentais.
+Este projeto é de código aberto sob a licença [MIT](LICENSE), com fins educacionais e experimentais.
 
 ---
 
-
 > 🎯 **Junte-se à missão de desvendar o 1000 Bitcoins Puzzle com conhecimento e matemática!**
+
+---
+
+## 📬 Apoie o projeto
+
+* Bitcoin: `13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava`
+* PIX: `qrodrigob@gmail.com`
  
 
 ---
