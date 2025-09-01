@@ -1,40 +1,20 @@
+---
 name: Feature request
-description: Sugira uma nova funcionalidade para o projeto
-title: "[FEATURE] "
-labels: ["enhancement"]
-assignees: []
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
 
-body:
-  - type: markdown
-    attributes:
-      value: |
-        Obrigado por sugerir uma nova funcionalidade! Por favor, preencha os campos abaixo para ajudar a equipe a entender sua ideia.
+---
 
-  - type: textarea
-    id: problem-description
-    attributes:
-      label: Existe um problema relacionado?
-      description: Descreva claramente o problema que essa funcionalidade resolveria.
-      placeholder: Ex: Fico sempre frustrado quando quero rodar vários teoremas de uma vez e não existe uma função agregadora...
-    validations:
-      required: true
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-  - type: textarea
-    id: proposed-solution
-    attributes:
-      label: Descreva a solução desejada
-      description: Explique de forma clara o que você gostaria que acontecesse.
-      placeholder: Ex: Criar uma função `run_all_teoremas()` que execute todos os scripts em sequência.
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternativas consideradas
-      description: Já pensou em outras formas de resolver o problema? Descreva-as aqui.
-      placeholder: Ex: Também pensei em criar um CLI com argparse para selecionar os teoremas...
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-  - type: textarea
-    id: additional-context
-    attributes:
-      label: Contexto adicional
-      description: Adicione qualquer outra informação ou screenshots que ajudem a entender sua sugestão.
+**Additional context**
+Add any other context or screenshots about the feature request here.
