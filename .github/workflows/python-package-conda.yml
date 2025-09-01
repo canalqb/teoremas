@@ -1,4 +1,4 @@
-name: CanalQb - Python Package using Conda (3.8.10)
+name: CanalQb - Python Package using Conda (3.8)
 
 on: [push]
 
@@ -12,10 +12,10 @@ jobs:
     - name: Checkout do repositório
       uses: actions/checkout@v4
 
-    - name: Instalar Miniconda com Python 3.8.10
+    - name: Instalar Miniconda com Python 3.8
       uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: 3.8.10
+        python-version: 3.8
         auto-update-conda: true
         activate-environment: base
 
