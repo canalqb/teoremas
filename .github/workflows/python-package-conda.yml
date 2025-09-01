@@ -23,11 +23,12 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
 
-      - name: Create and activate environment from environment.yml
+      - name: Create and activate environment from environment.yml 
         run: |
-          conda env create --file environment.yml --force
+          conda env remove -n teoremas -y || echo "No existing env to remove"
+          conda env create --file environment.yml
           conda activate teoremas
-          python --version  # Confirma versão Python
+          python --version  # Confirmar versão instalada
 
       - name: Install additional dependencies (optional)
         run: |
