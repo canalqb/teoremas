@@ -1,12 +1,3 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
----
-
 name: Outro tipo de issue
 description: Use este modelo para relatar dúvidas, sugestões ou qualquer outro tópico não coberto por outros templates.
 title: "[DISCUSSÃO] "
