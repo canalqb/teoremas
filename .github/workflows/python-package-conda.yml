@@ -1,4 +1,4 @@
-name: CanalQb - Python Package with Conda (Stable)
+name: CanalQb - Python Package with Mambaforge
 
 on: [push]
 
@@ -7,29 +7,32 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash -l {0}
+        shell: bash -l {0}  # necessário para ativar corretamente o conda
 
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Setup Miniconda (stable)
-        uses: conda-incubator/setup-miniconda@v1
+      - name: Setup Mambaforge com Python 3.8
+        uses: conda-incubator/setup-miniconda@v2
         with:
+          miniforge-variant: Mambaforge
+          use-mamba: true
           python-version: 3.8
-          auto-update-conda: true
+          channels: conda-forge
           activate-environment: base
+          auto-update-conda: true
 
       - name: Atualizar dependências com Conda
-        run: conda env update --file environment.yml --name base
+        run: mamba env update --file environment.yml --name base
 
       - name: Análise de código com flake8
         run: |
-          conda install -y flake8
+          mamba install -y flake8
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      - name: Testes com pytest
+      - name: Rodar testes com pytest
         run: |
-          conda install -y pytest
+          mamba install -y pytest
           pytest
