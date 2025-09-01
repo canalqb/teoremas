@@ -18,22 +18,31 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          python-version: 3.8  # usado só para o setup do conda
+          python-version: 3.8  # Apenas para boot inicial
           channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
+          use-mamba: true  # Mais rápido
 
-      - name: Create conda environment from environment.yml
+      - name: Create environment from environment.yml
         run: |
-          conda env create --file environment.yml
+          mamba env create -f environment.yml
+          source $(conda info --base)/etc/profile.d/conda.sh
+          conda activate teoremas
+          python --version
 
-      - name: Run tests with pytest in conda environment
-        run: conda run -n teoremas pytest tests
+      - name: Install additional dependencies (optional)
+        run: |
+          mamba install --yes -n teoremas numpy pandas
+
+      - name: Run tests with pytest
+        run: |
+          conda run -n teoremas pytest tests
 
       - name: Cache conda packages
         uses: actions/cache@v3
         with:
-          path: ~/.conda/pkgs
+          path: /home/runner/conda_pkgs_dir
           key: ${{ runner.os }}-conda-pkgs-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
