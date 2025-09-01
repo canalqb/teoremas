@@ -1,7 +1,40 @@
-uses: conda-incubator/setup-miniconda@v2
-with:
-  miniforge-variant: Miniforge
-  python-version: 3.8
-  channels: conda-forge
-  activate-environment: base
-  auto-update-conda: true
+name: CanalQb Python Package with Miniforge
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}  # para ativar corretamente o conda
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Miniforge com Python 3.8
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-variant: Miniforge
+          python-version: 3.8
+          channels: conda-forge
+          activate-environment: base
+          auto-update-conda: true
+
+      - name: Instalar mamba
+        run: conda install -c conda-forge mamba
+
+      - name: Atualizar ambiente
+        run: mamba env update --file environment.yml --name base
+
+      - name: Lint com flake8
+        run: |
+          mamba install -y flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Testar com pytest
+        run: |
+          mamba install -y pytest
+          pytest
