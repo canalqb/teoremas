@@ -18,24 +18,24 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          python-version: 3.8
-          channels: conda-forge
-          environment-file: environment.yml   # <-- cria e ativa ambiente do yml
-          activate-environment: teoremas     # <-- ativa o ambiente 'teoremas'
+          python-version: 3.8  # pode ficar aqui para setup, mas o env vai seguir environment.yml
+          channels: conda-forge,defaults
           auto-update-conda: true
-          auto-activate-base: false           # desativa auto ativação do base
-          architecture: x64
-          clean-patched-environment-file: true
-          run-post: true
+          auto-activate-base: false
 
-      - name: Install dependencies via conda (optional if environment.yml is enough)
+      - name: Create and activate environment from environment.yml
         run: |
-          conda install --yes numpy pandas
+          conda env create --file environment.yml --force
+          conda activate teoremas
+          python --version  # para confirmar a versão instalada
+
+      - name: Install any additional dependencies (optional)
+        run: |
+          conda install --yes -n teoremas numpy pandas
 
       - name: Run tests
         run: |
-          conda activate teoremas
-          pytest
+          conda run -n teoremas pytest
 
       - name: Cache conda packages
         uses: actions/cache@v3
