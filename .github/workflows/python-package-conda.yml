@@ -14,27 +14,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Miniconda with conda-forge only
+      - name: Setup Miniconda (Miniforge3)
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          use-mamba: false               # Desativa mamba
-          channels: conda-forge          # Remove repo.anaconda.com
+          python-version: 3.8  # Apenas para boot inicial
+          channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
-          activate-environment: teoremas
-          environment-file: environment.yml
+          use-mamba: true  # Mais rápido
 
-      - name: Show Python version (confirmação)
-        run: python --version
+      - name: Create environment from environment.yml
+        run: |
+          mamba env create -f environment.yml
+          source $(conda info --base)/etc/profile.d/conda.sh
+          conda activate teoremas
+          python --version
+
+      - name: Install additional dependencies (optional)
+        run: |
+          mamba install --yes -n teoremas numpy pandas
 
       - name: Run tests with pytest
-        run: conda run -n teoremas pytest tests
+        run: |
+          conda run -n teoremas pytest tests
 
       - name: Cache conda packages
         uses: actions/cache@v3
         with:
-          path: ~/.conda/pkgs
+          path: /home/runner/conda_pkgs_dir
           key: ${{ runner.os }}-conda-pkgs-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
