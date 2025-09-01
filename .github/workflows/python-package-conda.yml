@@ -18,26 +18,24 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          python-version: 3.8  # setup base, mas o env seguirá environment.yml
+          python-version: 3.8  # Usado só para setup
           channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
 
-      - name: Remove existing environment if it exists
+      - name: Create and activate environment from environment.yml
         run: |
-          conda env remove -n teoremas || echo "Environment 'teoremas' does not exist, skipping removal"
+          conda env create --file environment.yml --force
+          conda activate teoremas
+          python --version  # Confirma versão Python
 
-      - name: Create environment from environment.yml
-        run: conda env create --file environment.yml
+      - name: Install additional dependencies (optional)
+        run: |
+          conda install --yes -n teoremas numpy pandas
 
-      - name: Confirm Python version
-        run: conda run -n teoremas python --version
-
-      - name: Install any additional dependencies (optional)
-        run: conda run -n teoremas conda install --yes numpy pandas
-
-      - name: Run tests
-        run: conda run -n teoremas pytest
+      - name: Run tests with pytest
+        run: |
+          conda run -n teoremas pytest tests
 
       - name: Cache conda packages
         uses: actions/cache@v3
