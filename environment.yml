@@ -3,9 +3,15 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python  # pega a última versão disponível
+  - python
+  - matplotlib
+  - numpy
+  - pandas
+  - plotly
+  - psutil
+  - scipy
+  - scikit-learn
+  - sympy
   - pip
-  - flake8
-  - pytest
   - pip:
-    - some-pip-package  # substitua por pacotes pip reais que usar
+      - bit
