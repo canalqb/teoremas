@@ -1,12 +1,3 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
----
-
 name: Bug report
 description: Create a report to help us improve
 title: "[BUG] "
@@ -75,3 +66,4 @@ body:
     attributes:
       label: Contexto adicional
       description: Algum outro detalhe importante? Logs, saída do console, etc.
+
