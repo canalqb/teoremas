@@ -1,0 +1,12 @@
+bit
+collections
+dataclasses
+decimal
+matplotlib
+numpy
+pandas
+plotly
+psutil
+scipy
+scikit-learn
+sympy
