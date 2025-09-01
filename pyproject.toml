@@ -10,3 +10,45 @@ authors = [{name = "Rodrigo", email = "qrodrigob@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = []
+
+[tool.setuptools]
+packages = [
+    "Carmichael",
+    "Desigualdade_de_Kolmogorov",
+    "Extensao_de_Kolmogorov",
+    "Infinitude_dos_primos",
+    "Irracionalidade",
+    "KolmogorovComplexity",
+    "Kolmogorov_Convergente",
+    "Kolmogorov_Sinai",
+    "LeiFortedosGrandesNúmeros",
+    "Lei_dos_Grandes_Números_fraca_e_forte",
+    "Pequeno_Teorema_de_Fermat",
+    "Regularidade_de_Kolmogorov",
+    "Teorema_Central_do_Limite",
+    "Teorema_Euler–Fermat",
+    "Teorema_Fraco_de_Goldbach",
+    "Teorema_Fundamental_da_Aritmética",
+    "Teorema_Glivenko_Cantelli",
+    "Teorema_de_Bayes",
+    "Teorema_de_Black_Scholes",
+    "Teorema_de_Borel",
+    "Teorema_de_Codificacao_de_Huffman",
+    "Teorema_de_Cramér_Rao",
+    "Teorema_de_Doob",
+    "Teorema_de_Fisher",
+    "Teorema_de_Gauss_Markov",
+    "Teorema_de_Girsanov",
+    "Teorema_de_Goldbach_Levy",
+    "Teorema_de_Inversão_de_Kolmogorov",
+    "Teorema_de_Ito",
+    "Teorema_de_Kraft_McMillan",
+    "Teorema_de_Levy",
+    "Teorema_de_Mitchell",
+    "Teorema_de_Neyman_Pearson",
+    "Teorema_de_Shannon",
+    "Teorema_do_Limiar_Central_Kolmogorov",
+    "Teoremas_de_Feller",
+    "kolmogorov_representation",
+    "pitagoras"
+]
