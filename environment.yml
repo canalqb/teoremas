@@ -3,9 +3,9 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python  # sem número, pega a última versão disponível
+  - python            # pega a última versão disponível
   - pip
   - flake8
   - pytest
   - pip:
-    - some-pip-package
+      - requests      # exemplo de pacote pip real, pode alterar ou remover
