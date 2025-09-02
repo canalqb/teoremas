@@ -32,14 +32,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
 
+      # Aqui você deve corrigir, removendo --force do comando mamba env create
       - name: Remove existing environment if exists
         shell: bash -l {0}
         run: conda env remove -n teoremas -y || true
 
-      - name: Create or update environment from environment.yml
+      - name: Create environment from environment.yml
         shell: bash -l {0}
         run: |
-          conda env update -f environment.yml -n teoremas --prune
+          mamba env create -f environment.yml
           conda activate teoremas
           python --version
 
