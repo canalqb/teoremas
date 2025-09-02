@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Limpar cache do conda e pip
+        run: |
+          conda clean --all --yes
+          pip cache purge
+
       - name: Setup Miniconda (Miniforge3)
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -32,7 +37,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
 
-      # Aqui você deve corrigir, removendo --force do comando mamba env create
       - name: Remove existing environment if exists
         shell: bash -l {0}
         run: conda env remove -n teoremas -y || true
