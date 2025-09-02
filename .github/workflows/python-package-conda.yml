@@ -34,11 +34,10 @@ jobs:
 
       - name: Remove existing conda environment if any
         shell: bash -l {0}
-        run: |
-          conda env remove -n teoremas -y || true
+        run: conda env remove -n teoremas -y || true
 
       - name: Create environment from environment.yml
-        shell: bash -l {0}
+        shell: bash -l {0}  # Importante para ativar conda corretamente
         run: |
           mamba env create -f environment.yml
           conda activate teoremas
