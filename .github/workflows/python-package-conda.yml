@@ -18,28 +18,28 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          python-version: 3.11  # Atualizado para Python 3.11
+          python-version: 3.11
           channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
-          use-mamba: true  # Mamba é mais rápido
+          use-mamba: true
 
       - name: Cache conda packages
         uses: actions/cache@v3
         with:
-          path: ~/.conda/pkgs  # Cache dos pacotes conda
+          path: ~/.conda/pkgs
           key: ${{ runner.os }}-conda-pkgs-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
 
-      - name: Remove existing conda environment if any
+      - name: Remove existing environment if exists
         shell: bash -l {0}
         run: conda env remove -n teoremas -y || true
 
-      - name: Create environment from environment.yml
-        shell: bash -l {0}  # Importante para ativar conda corretamente
+      - name: Create or update environment from environment.yml
+        shell: bash -l {0}
         run: |
-          mamba env create -f environment.yml
+          conda env update -f environment.yml -n teoremas --prune
           conda activate teoremas
           python --version
 
