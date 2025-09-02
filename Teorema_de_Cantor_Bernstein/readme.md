@@ -1,4 +1,4 @@
-# ♾️ cantor_bernstein_interval.py
+# ♾️ Teorema de Cantor–Bernstein
 
 Estimativa de cardinalidade em conjuntos numéricos exponenciais usando o **Teorema de Cantor–Bernstein**.
 
