@@ -1,3 +1,4 @@
+# Numeros_de_Carmichael.py
 import bisect
 
 # Lista conhecida (parcial) dos primeiros números de Carmichael (extraída de tabelas confiáveis)
