@@ -22,7 +22,7 @@ jobs:
           channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
-          use-mamba: false  # <-- DESLIGAR MAMBA
+          use-mamba: true
 
       - name: Cache conda packages
         uses: actions/cache@v3
@@ -32,6 +32,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
 
+      # Aqui você deve corrigir, removendo --force do comando mamba env create
       - name: Remove existing environment if exists
         shell: bash -l {0}
         run: conda env remove -n teoremas -y || true
@@ -39,7 +40,7 @@ jobs:
       - name: Create environment from environment.yml
         shell: bash -l {0}
         run: |
-          conda env create -f environment.yml
+          mamba env create -f environment.yml
           conda activate teoremas
           python --version
 
@@ -47,7 +48,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate teoremas
-          conda install --yes numpy pandas
+          mamba install --yes numpy pandas
 
       - name: Run tests with pytest
         shell: bash -l {0}
