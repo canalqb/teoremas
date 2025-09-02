@@ -18,31 +18,35 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           miniforge-variant: Miniforge3
-          python-version: 3.8  # Apenas para boot inicial
+          python-version: 3.11  # Atualizado para Python 3.11
           channels: conda-forge,defaults
           auto-update-conda: true
           auto-activate-base: false
-          use-mamba: true  # Mais rápido
-
-      - name: Create environment from environment.yml
-        run: |
-          mamba env create -f environment.yml
-          source $(conda info --base)/etc/profile.d/conda.sh
-          conda activate teoremas
-          python --version
-
-      - name: Install additional dependencies (optional)
-        run: |
-          mamba install --yes -n teoremas numpy pandas
-
-      - name: Run tests with pytest
-        run: |
-          conda run -n teoremas pytest tests
+          use-mamba: true  # Mamba é mais rápido
 
       - name: Cache conda packages
         uses: actions/cache@v3
         with:
-          path: /home/runner/conda_pkgs_dir
+          path: ~/.conda/pkgs  # Cache dos pacotes conda
           key: ${{ runner.os }}-conda-pkgs-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-conda-pkgs-
+
+      - name: Create environment from environment.yml
+        shell: bash -l {0}  # Importante para ativar conda corretamente
+        run: |
+          mamba env create -f environment.yml --force
+          conda activate teoremas
+          python --version
+
+      - name: Install additional dependencies (optional)
+        shell: bash -l {0}
+        run: |
+          conda activate teoremas
+          mamba install --yes numpy pandas
+
+      - name: Run tests with pytest
+        shell: bash -l {0}
+        run: |
+          conda activate teoremas
+          pytest tests
