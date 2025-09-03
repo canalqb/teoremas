@@ -1,99 +1,54 @@
-# kripke_completude_approx
 
-## 📘 Sobre
+## 2.4 Funcionamento Interno
 
-Este projeto explora uma aplicação numérica do **Teorema da Completude da Lógica Modal**, com base na semântica de Kripke. A proposta central é estimar o crescimento da complexidade de modelos acessíveis conforme o número `N` de níveis ou profundidade aumenta, utilizando intervalos definidos por potências de 2.
+- Para cada nível `N`, define um intervalo de mundos possíveis de tamanho `2^N`.
+- Calcula um valor heurístico que tenta refletir o crescimento do número de estados ou fórmulas possíveis dentro desse intervalo.
+- Imprime esses valores para mostrar o padrão de crescimento.
 
-A partir da estrutura de modelos de Kripke, o script tenta reproduzir ou aproximar uma métrica chamada de "valor esperado pelo teorema", que se acredita representar um comportamento acumulativo ou transitivo da acessibilidade entre mundos possíveis em lógica modal.
+## 2.5 Tecnologias e Requisitos
 
----
-
-## 📚 Teorema da Completude da Lógica Modal (Kripke)
-
-Na lógica modal, o **Teorema da Completude de Kripke** estabelece que toda fórmula que é semanticamente válida (ou seja, verdadeira em todos os modelos de Kripke) é também sintaticamente demonstrável dentro do sistema axiomático da lógica modal. E vice-versa.
-
-> Em termos simples: tudo o que é logicamente verdadeiro em todos os mundos possíveis (na estrutura de Kripke) pode ser provado dentro da lógica modal, e tudo o que pode ser provado é válido nesses modelos.
-
-### Modelos de Kripke
-
-Um modelo de Kripke é composto por:
-
-- Um conjunto de mundos possíveis `W`
-- Uma relação de acessibilidade `R` ⊆ W × W
-- Uma função de avaliação que define quais proposições são verdadeiras em quais mundos
-
-A partir disso, uma fórmula é considerada **válida** se for verdadeira em todos os mundos de todos os modelos possíveis sob essa semântica.
+- **Python 3.8.10**  
+- Bibliotecas usadas: nenhuma externa específica, apenas bibliotecas padrão do Python.
 
 ---
 
-## 🧮 Objetivo do Script
+# 3 Extras
 
-O script **kripke_completude_approx.py** tenta aproximar, por meios numéricos, o comportamento do crescimento do número de estados possíveis ou fórmulas válidas num universo de modelos de Kripke, com base em potências de dois. A motivação vem da observação empírica de que:
+## 3.1 Licença
 
-- Para cada `N`, o intervalo de mundos possíveis é de `2^N` até `2^(N+1) - 1`
-- O número de possíveis variações dentro do intervalo é sempre `2^N`
-- A acessibilidade entre mundos pode gerar uma explosão combinatória de estados
+Este projeto está sob licença MIT. Sinta-se livre para usar, modificar e distribuir.
 
-A coluna de **"valor esperado pelo teorema"** (informalmente dada) parece refletir esse crescimento, mas de forma acumulativa ou com base em regras não-lineares.
+## 3.2 Referências
 
----
+- Kripke, S.A. (1963). *Semantical Considerations on Modal Logic*. Acta Philosophica Fennica.  
+- Blackburn, P., de Rijke, M., Venema, Y. (2001). *Modal Logic*. Cambridge University Press.  
+- https://en.wikipedia.org/wiki/Modal_logic#Completeness
 
-## 🔍 Justificativa
+## 3.3 Testes e Validações
 
-A lógica modal com semântica de Kripke é fortemente baseada em estruturas transitivas, reflexivas ou simétricas de mundos possíveis. Ao aumentar `N`, essas estruturas crescem exponencialmente. O script simula esse crescimento com:
-
-- A base de crescimento: potências de dois
-- Um modelo aproximado de transições ou expansões possíveis entre mundos acessíveis
-- A tentativa de simular o acúmulo de complexidade em fórmulas válidas para N níveis
-
-Esse comportamento é coerente com a forma como a lógica modal se comporta: mais mundos implicam mais caminhos acessíveis, mais fórmulas válidas e mais estruturas a considerar. Isso justifica o uso do teorema como base conceitual para o crescimento da função aproximada.
+Os valores produzidos pelo script são aproximações heurísticas e não provas formais, mas ilustram bem o crescimento da estrutura dos modelos.
 
 ---
 
-## ⚙️ Como funciona
+# 4 Contato
 
-O script imprime uma tabela com as seguintes colunas:
+* Feito por CanalQb no GitHub  
+* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]  
+* 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava  
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)  
 
-- `N`: profundidade do modelo
-- `Início`: 2^N (ponto inicial do intervalo)
-- `Fim`: 2^(N+1) - 1 (ponto final)
-- `Aproximação`: um valor heurístico calculado para simular o comportamento esperado
-
-Exemplo de saída:
-
-```
-
-## N | Inicio (2^N) | Fim (2^(N+1))-1 | Aproximação
-
-0 |            1 |               1 |            1
-1 |            2 |               3 |            4
-2 |            4 |               7 |            8
-3 |            8 |              15 |           16
-...
-
-```
+*Readme.md corrigido por ChatGPT*
 
 ---
 
-## 💡 Considerações
+# 5. Nota
 
-Este projeto **não é uma prova formal** do teorema, mas sim uma exploração computacional dos padrões numéricos que emergem a partir das propriedades dos modelos de Kripke e da lógica modal.
+**Mundos possíveis:** diferentes cenários ou situações que podem ocorrer, considerados na lógica modal.
 
-É uma ferramenta didática para visualizar o crescimento das estruturas acessíveis conforme a profundidade lógica aumenta — algo difícil de visualizar apenas com definições formais.
+**Relação de acessibilidade:** uma conexão que indica se um mundo "pode acessar" ou "ver" outro mundo, essencial para entender como a verdade de proposições se propaga.
 
----
+**Valor esperado:** aqui, uma aproximação numérica que tenta medir a complexidade ou o "peso" do crescimento dos estados acessíveis.
 
-## 🧠 Futuras melhorias
+**Completude:** garantia de que tudo que é verdadeiro na semântica pode ser demonstrado pela lógica.
 
-- Refinar o modelo de aproximação baseado em transições reais entre mundos
-- Implementar diferentes tipos de relações (reflexiva, simétrica, etc.)
-- Simular diretamente a geração de mundos e relações com grafos
-
---- 
-
-## 📬 Contato
-
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
-* 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+**Profundidade (N):** quantidade de níveis que a lógica modal considera, influenciando o tamanho do modelo de Kripke.
