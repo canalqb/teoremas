@@ -1,137 +1,147 @@
-## 🔹 Teorema do Limite Central (TLC)
+# 🔹 - Teorema do Limite Central (Kolmogorov)
 
-O **Teorema do Limite Central (TLC)** é um dos pilares da estatística e da teoria das probabilidades. Ele afirma, em termos gerais, que:
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![LGN](https://img.shields.io/badge/Teorema-Limite%20Central-ff69b4.svg)](https://pt.wikipedia.org/wiki/Teorema_do_limite_central)
 
-> **A soma de muitas variáveis aleatórias independentes, com mesma distribuição (ou ao menos com média e variância bem definidas), tende a seguir uma distribuição normal (Gaussiana), independentemente da distribuição original das variáveis.**
+## Frase do Teorema
 
-### ✳️ Versão de Kolmogorov do TLC
+> A soma de muitas variáveis aleatórias independentes tende a seguir uma distribuição normal, mesmo que as variáveis originais não sejam normais – isso significa que, com bastante dados, o comportamento geral fica mais previsível e parecido com uma curva conhecida.
 
-A versão de **Kolmogorov** (mais rigorosa) afirma:
+## Sumário
 
-> Seja $X_1, X_2, ..., X_n$ uma sequência de variáveis aleatórias **independentes**, com **médias $\mu_i$** e **variâncias $\sigma_i^2$**. Se o somatório das variâncias é infinito e nenhuma variável domina a soma (condição de Lindeberg ou Lyapunov), então a soma normalizada tende à distribuição normal.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
 
-Formalmente:
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Teorema_do_Limiar_Central_Kolmogorov.py`](#2-script-teorema_do_limiar_central_kolmogorovpy)
 
-$$
-\frac{\sum_{i=1}^n (X_i - \mu_i)}{\sqrt{\sum_{i=1}^n \sigma_i^2}} \xrightarrow{d} \mathcal{N}(0,1)
-$$
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
 
----
-
-## 🔹 Sobre a Tabela
-
-A tabela que você deu é a seguinte:
-
-| $2^A$ | Retorno do teorema | $2^{A+1} - 1$ |
-| ----- | ------------------ | ------------- |
-| 1     | ?                  | 1             |
-| 2     | ?                  | 3             |
-| 4     | ?                  | 7             |
-| 8     | ?                  | 15            |
-| 16    | ?                  | 31            |
-| 32    | ?                  | 63            |
-| 64    | ?                  | 127           |
-| 128   | ?                  | 255           |
-| 256   | ?                  | 511           |
-
-Você quer entender como essa tabela se relaciona com o Teorema do Limite Central (TLC) – mais especificamente com a versão de Kolmogorov.
-
-Vamos analisar:
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 Contato](#4-contato)
+* [5. Nota](#5-nota)
 
 ---
 
-## 🔹 Análise da Tabela
+## 1. Introdução ao Teorema
 
-A coluna 1 é uma progressão geométrica de base 2:
+### 1.1 Resumo
 
-* $2^A$, com $A = 0, 1, 2, 3, \ldots$
+O **Teorema do Limite Central (TLC)** é um dos conceitos mais importantes da estatística. Ele diz que, quando somamos muitas variáveis aleatórias independentes, o resultado tende a se parecer com uma curva normal (também chamada de distribuição gaussiana), mesmo que as variáveis originais não sigam essa curva.
 
-A coluna 3 é:
+### 1.2 Exemplos Práticos
 
-* $2^{A+1} - 1$
+Imagine que você lance várias moedas e conte o número de caras. Cada moeda tem chance 50% de dar cara ou coroa. Se lançar só uma moeda, o resultado pode ser 0 ou 1 cara — sem padrão claro. Mas, se lançar 100 moedas, a distribuição do número total de caras se parece muito com a curva normal.
 
-Exemplos:
+### 1.3 Explicação Detalhada
 
-* $A = 0 \Rightarrow 2^{0+1} - 1 = 1$
-* $A = 1 \Rightarrow 2^{1+1} - 1 = 3$
-* $A = 2 \Rightarrow 2^{2+1} - 1 = 7$
-* etc.
+A versão de Kolmogorov do TLC é mais rigorosa e trabalha com variáveis que podem ter médias e variâncias diferentes. Desde que as variáveis sejam independentes e nenhuma tenha um peso excessivo na soma, a soma normalizada tende à distribuição normal padrão (média zero, desvio 1).
 
-Isso mostra que:
+### 1.4 Aplicações
 
-$$
-2^A + 2^A - 1 = 2^{A+1} - 1
-$$
+* Estatística inferencial para estimar médias e probabilidades.
+* Ciências naturais e sociais para modelar fenômenos aleatórios.
+* Controle de qualidade e processos industriais.
+* Aprendizado de máquina e inteligência artificial, especialmente na modelagem de erros e ruídos.
 
-Ou seja, você está somando $2^A$ elementos com algo que gera um crescimento exponencial **menos 1**.
+### 1.5 Análise da Tabela
 
----
+A tabela apresenta números na forma de potências de 2 e valores relacionados a limites superiores, como:
 
-## 🔹 Relação com o Teorema do Limite Central
+| 2^A | Retorno do teorema | 2^(A+1) - 1 |
+| --- | ------------------ | ----------- |
+| 1   | ?                  | 1           |
+| 2   | ?                  | 3           |
+| 4   | ?                  | 7           |
+| 8   | ?                  | 15          |
+| 16  | ?                  | 31          |
 
-A relação possível aqui pode ser **conceitual e numérica**. Vamos explorar:
-
-### 1. **Crescimento do número de variáveis na soma**
-
-No TLC, quanto mais variáveis independentes você soma, mais a distribuição da soma se aproxima de uma normal.
-
-* Se você estiver somando $2^A$ variáveis independentes (por exemplo, lançamentos de moedas, amostras de uma distribuição qualquer etc.), a distribuição da soma começa a tender ao comportamento **gaussiano** à medida que $A$ aumenta.
-
-* Isso faz sentido: para $2^0 = 1$ variável, não há aproximação nenhuma.
-
-* Para $2^1 = 2$, ainda pouco.
-
-* Mas para $2^8 = 256$, a soma (normalizada) já tende fortemente a uma distribuição normal (isto é o TLC em ação).
-
-### 2. **Retorno do teorema: limite da dispersão ou cobertura**
-
-Se você estiver olhando a **quantidade total de valores possíveis** (por exemplo, todas as somas possíveis de $n$ variáveis de 0 ou 1), isso cresce como:
-
-$$
-\text{Número de somas possíveis} = 2^n \quad \text{(variáveis binárias)}
-$$
-
-Mas a **quantidade de valores distintos de soma** possíveis vai de 0 até $n$, ou seja, $n+1$ valores distintos.
-
-Contudo, a **distribuição das somas** se aproxima de uma normal com média $n/2$ e desvio $\sqrt{n}/2$ (para variáveis de Bernoulli).
-
-Portanto, à medida que o número de variáveis aumenta exponencialmente, a curva das somas possíveis converge para uma curva gaussiana. Isso é o **"retorno do teorema"**: quanto mais variáveis, mais a distribuição da soma se comporta como uma normal.
+Isso mostra crescimento exponencial e pode estar relacionado a quantidades de variáveis somadas e a número de estados possíveis (como em árvores binárias).
 
 ---
 
-## 🔹 Conclusão: O que significa essa tabela?
+## 2. Script `Teorema_do_Limiar_Central_Kolmogorov.py`
 
-Aqui está uma **interpretação possível e coerente**:
+### 2.1 Relação com o Teorema
 
-| $2^A$ = número de variáveis                                  | Retorno do teorema                                                          | $2^{A+1} - 1$ = total de estados distintos                   |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Número de variáveis binárias (ou experimentos independentes) | Aproximação da distribuição de somas para Gaussiana (via TLC de Kolmogorov) | Número máximo de combinações somatórias ou estados derivados |
+O script implementa uma simulação ou cálculo relacionado ao Teorema do Limite Central, focando especialmente na versão de Kolmogorov que permite variáveis com médias e variâncias diferentes.
 
-* A coluna "Retorno do teorema" parece sugerir **a faixa de valores resultantes possíveis** de uma soma de $2^A$ variáveis binárias: vai de 0 até $2^A$, ou seja, $2^A + 1$ valores distintos.
+### 2.2 Objetivo do Script
 
-  → No entanto, $2^{A+1} - 1$ parece estar relacionado ao número total de **configurações binárias possíveis menos 1** (já que há $2^{2^A}$ configurações possíveis para variáveis binárias, mas isso é exponencial demais para a tabela mostrada).
+* Demonstrar numericamente como a soma de variáveis independentes se aproxima da normal.
+* Validar a condição de crescimento das variâncias e independência.
+* Gerar uma tabela ou gráfico que permita observar a convergência da soma para a distribuição normal.
 
-Pode ser que você esteja lidando com uma construção de árvore binária completa até nível $A$, onde:
+### 2.3 Exemplo de Saída
 
-* O número de **nós totais** = $2^{A+1} - 1$
-* E o número de **folhas** = $2^A$
+```plaintext
+Número de variáveis: 16  
+Soma normalizada: valor aproximado de uma normal padrão  
+Distribuição empírica: se aproxima da curva gaussiana  
+```
 
-Essa é outra interpretação possível.
+### 2.4 Funcionamento Interno
+
+* Gera variáveis aleatórias independentes com médias e variâncias definidas.
+* Calcula a soma total e normaliza pela raiz da soma das variâncias.
+* Avalia a convergência dessa soma para a normal padrão.
+* Apresenta os resultados em tabela ou gráfico.
+
+### 2.5 Tecnologias e Requisitos
+
+* Python 3.8.10
+* Bibliotecas: numpy, matplotlib (para gráficos, opcional)
+* Ambiente de execução padrão para scripts Python.
 
 ---
 
-## 🔹 Resumo final
+## 3 Extras
 
-* A tabela sugere uma estrutura exponencial de crescimento (em número de variáveis ou nós de uma árvore).
-* O **Teorema do Limite Central** (especialmente na forma de Kolmogorov) entra ao considerar **somatórios de muitas variáveis independentes**, cujo comportamento tende a uma distribuição normal.
-* Quanto maior o valor de $A$, mais a soma de $2^A$ variáveis se aproxima de uma Gaussiana — esse é o “retorno do teorema”.
+### 3.1 Licença
 
---- 
- 
+Este projeto está licenciado sob a licença MIT — veja o arquivo LICENSE para detalhes.
 
-## 📬 Contato
+### 3.2 Referências
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* Wikipedia: [Teorema do Limite Central](https://pt.wikipedia.org/wiki/Teorema_do_limite_central)
+* Livro: “Probabilidade e Estatística” – autores diversos.
+
+### 3.3 Testes e Validações
+
+O script inclui testes para verificar a convergência da soma das variáveis e validação de condições de independência e variação.
+
+---
+
+## 4 Contato
+
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+**{Variável aleatória}:** é um valor que pode variar de forma imprevisível, como o resultado de um dado ou moeda.
+
+**{Independência}:** significa que o resultado de uma variável não afeta o resultado da outra.
+
+**{Média}:** é o valor esperado ou "central" que uma variável assume em média.
+
+**{Variância}:** indica o quanto os valores de uma variável se afastam da média; é uma medida de dispersão.
+
+**{Distribuição normal}:** é uma curva em forma de sino que descreve muitos fenômenos naturais, caracterizada por média e desvio padrão.
