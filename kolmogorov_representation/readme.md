@@ -1,130 +1,146 @@
-# 🧠 Representação de Kolmogorov–Arnold: Uma Demonstração Computacional
+# 🧠 - Teorema de Representação de Kolmogorov–Arnold  
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![Kolmogorov](https://img.shields.io/badge/Teorema-Kolmogorov--Arnold-6495ED.svg)](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Arnold_representation_theorem)  
 
-Este repositório apresenta uma demonstração computacional simplificada do **Teorema de Representação de Kolmogorov–Arnold**, um dos resultados mais surpreendentes da análise matemática e da teoria da computação.
+## Frase do Teorema
 
----
+> Toda função contínua de múltiplas variáveis pode ser representada como uma composição finita de funções contínuas de uma única variável e de adição – isso significa que funções complexas podem ser construídas só com somas e funções simples de uma variável.
 
-## 📌 Sobre o Teorema de Kolmogorov–Arnold
+## Sumário
 
-> “Toda função contínua de múltiplas variáveis pode ser representada como uma composição finita de funções contínuas de uma única variável e de adição.”  
-> — A.N. Kolmogorov, 1957
-
-O **Teorema de Kolmogorov**, posteriormente generalizado por **V.I. Arnold**, estabelece que qualquer função contínua \( f: [0,1]^n \to \mathbb{R} \) pode ser decomposta como:
-
-\[
-f(x_1, x_2, ..., x_n) = \sum_{q=0}^{2n} \phi_q\left( \sum_{p=1}^{n} \psi_{q,p}(x_p) \right)
-\]
-
-Ou seja:
-
-✅ Não é necessário multiplicação  
-✅ Nem funções multivariadas intermediárias  
-✅ Apenas **soma** e **funções univariadas compostas**
-
-### 🌟 Por que isso é revolucionário?
-
-- **Redução dimensional**: Constrói funções multivariadas usando apenas funções univariadas.
-- **Base teórica de redes neurais**: Influenciou diretamente os teoremas de aproximação universal em redes neurais feedforward.
-- **Não intuitivo**: Antes de Kolmogorov, acreditava-se que era impossível representar funções complexas de múltiplas variáveis sem operar diretamente sobre várias dimensões.
-
----
-
-## 🎯 O que este projeto demonstra?
-
-Neste exemplo, exploramos uma **forma reduzida** do teorema:
-
-- A função original \( f(x, y) = \sin(x) \cdot \cos(y) \) é uma função bidimensional contínua.
-- A função aproximada é construída seguindo a estrutura Kolmogoroviana com apenas **um termo**:
-
-\[
-f_{\text{approx}}(x, y) = \phi_1(\psi_1(x) + \psi_2(y))
-\]
-
-Com:
-- \( \psi_1(x) = \sin(x) \)
-- \( \psi_2(y) = \cos(y) \)
-- \( \phi_1(z) = 0.5 \cdot \sin(z) \)
-
-Essa aproximação é **intencionalmente simplificada** para fins didáticos e computacionais, mas preserva a essência do teorema: **usar apenas funções univariadas e adição** para construir uma função de duas variáveis.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Demonstração Computacional](#15-análise-da-demonstração-computacional)  
+* [2. Script `kolmogorov_representation_intervals_reduced.py`](#2-script_kolmogorov_representation_intervals_reducedpy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referências)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)  
 
 ---
 
-## 🧪 Como o script funciona?
+## 1. Introdução ao Teorema
 
-1. Gera amostras bidimensionais a partir de intervalos de potências de 2: \([2^n, 2^{n+1} - 1]\) para \(n = 0\) até \(29\).
-2. Avalia a função original \( \sin(x)\cos(y) \) no grid gerado.
-3. Avalia a função aproximada via Kolmogorov (reduzida).
-4. Exibe visualmente, em gráficos 3D, a comparação entre a função original e sua aproximação.
+### 1.1 Resumo
 
----
+O **Teorema de Kolmogorov–Arnold** é um resultado matemático surpreendente que mostra que qualquer função contínua com várias variáveis pode ser escrita usando só funções de uma variável e somas. Isso quebra a ideia de que funções multivariadas precisam de operações complicadas.
 
-## 📷 Visualização
+### 1.2 Exemplos Práticos
 
-O script gera dois gráficos lado a lado:
+Imagine que você tem uma função que depende de duas variáveis, como f(x, y) = sin(x) * cos(y). O teorema garante que essa função pode ser aproximada por uma soma de funções simples, que só recebem uma variável de cada vez.
 
-- ✅ **Gráfico 1**: Superfície da função original \( \sin(x) \cdot \cos(y) \)
-- 🔁 **Gráfico 2**: Aproximação usando o modelo Kolmogorov-reduzido
+### 1.3 Explicação Detalhada
 
-Essa visualização destaca a **qualidade da aproximação** e como estruturas complexas podem emergir de construções extremamente simples.
+A função original f(x1, x2, ..., xn) pode ser expressa como uma soma de funções univariadas aplicadas à soma de outras funções univariadas sobre cada variável, assim:
 
----
+f(x1, x2, ..., xn) = soma para q de phi_q ( soma para p de psi_{q,p}(x_p) )
 
-## ⚙️ Requisitos
+Aqui, phi e psi são funções que só recebem uma variável e são contínuas.
 
-- Python 3.x
-- `numpy`
-- `matplotlib` 
+### 1.4 Aplicações
 
---- 
+- Base teórica para redes neurais profundas  
+- Redução dimensional em análise matemática  
+- Compressão e modelagem de dados complexos  
+- Teoria da computação e análise funcional  
 
-## ▶️ Como Executar
+### 1.5 Análise da Demonstração Computacional
 
-Certifique-se de que as dependências estão instaladas executando:
+Este projeto apresenta uma versão simplificada para duas variáveis: f(x,y) = sin(x)*cos(y) é aproximada por:
 
-`pip install numpy matplotlib`
+f_approx(x,y) = phi_1(psi_1(x) + psi_2(y))  
 
-Depois, execute o script diretamente com:
+com psi_1(x) = sin(x), psi_2(y) = cos(y), e phi_1(z) = 0.5 * sin(z).
 
-`python kolmogorov_representation_intervals_reduced.py`
-
-O programa irá:
-
-- Calcular a função original e sua aproximação;
-- Exibir amostras numéricas dos resultados;
-- Renderizar dois gráficos 3D comparativos: a função original vs. a aproximação via Kolmogorov.
+O script compara visualmente a função original com a aproximação, mostrando que mesmo com uma simplificação, a ideia do teorema se mantém.
 
 ---
 
-## 📚 Referências Acadêmicas
+## 2. Script `kolmogorov_representation_intervals_reduced.py`
 
-- **Kolmogorov, A.N.** (1957). *On the representation of continuous functions of several variables by superpositions of continuous functions of one variable and addition*. *Doklady Akademii Nauk SSSR*.
-- **Arnold, V.I.** (1957). *On functions of three variables*. *Doklady Akademii Nauk SSSR*.
-- **Hecht-Nielsen, R.** (1987). *Kolmogorov’s Mapping Neural Network Existence Theorem*. *Proceedings of the International Conference on Neural Networks*.
+### 2.1 Relação com o Teorema
 
-Esses trabalhos fundamentam a teoria da representação funcional e influenciam diretamente áreas como redes neurais, compressão de dados e teoria da computação.
+O script demonstra computacionalmente o teorema, usando uma versão reduzida que aproxima uma função bidimensional por funções univariadas e soma, conforme a estrutura do teorema.
+
+### 2.2 Objetivo do Script
+
+Mostrar na prática como funções complexas podem ser reconstruídas usando apenas funções simples e operações de soma, validando a teoria por meio de visualizações gráficas.
+
+### 2.3 Exemplo de Saída
+
+O programa gera:
+
+- Uma tabela com amostras dos valores da função original e da aproximação  
+- Dois gráficos 3D lado a lado comparando as superfícies das funções  
+
+### 2.4 Funcionamento Interno
+
+- Gera pontos amostrais em intervalos baseados em potências de 2  
+- Avalia f(x,y) = sin(x)*cos(y) nos pontos gerados  
+- Avalia a aproximação reduzida via funções univariadas e soma  
+- Exibe gráficos 3D para visualização comparativa  
+
+### 2.5 Tecnologias e Requisitos
+
+- Python 3.8.10  
+- Bibliotecas: `numpy` e `matplotlib`  
+
+Para instalar as dependências:
+
+```bash
+pip install numpy matplotlib
+````
 
 ---
 
-## 🧩 Notas e Curiosidades
+## 3 Extras
 
-- O Teorema de Kolmogorov é **não construtivo**: ele **garante a existência** das funções univariadas \( \phi_q \) e \( \psi_{q,p} \), mas **não fornece uma fórmula fechada** para elas.
-- Na prática, como neste projeto, usamos aproximações simples e heurísticas para ilustrar o princípio estrutural do teorema.
-- Apesar de não ser uma implementação exata da versão completa do teorema, essa aproximação evidencia como estruturas univariadas podem reproduzir comportamentos multivariados complexos.
+### 3.1 Licença
+
+Este projeto está sob licença **MIT**, podendo ser utilizado livremente para fins educacionais e acadêmicos.
+
+### 3.2 Referências
+
+* Kolmogorov, A.N. (1957). Representação de funções contínuas
+* Arnold, V.I. (1957). Extensão do teorema
+* Hecht-Nielsen, R. (1987). Teorema de redes neurais
+
+### 3.3 Testes e Validações
+
+Testado em Python 3.8.10 com dados gerados para comparação visual e análise numérica, validando o funcionamento esperado.
 
 ---
 
-## ✅ Conclusão
+## 4 Contato
 
-Este projeto exemplifica como uma das ideias mais contraintuitivas e poderosas da matemática moderna — a representação de funções multivariadas usando apenas composições de funções univariadas e adição — pode ser trazida à vida com ferramentas computacionais simples.
-
-O **Teorema de Kolmogorov–Arnold** permanece como um marco teórico com desdobramentos profundos na análise funcional, aprendizado de máquina e ciência da complexidade.
-
----
-
-  
-## 📬 Contato
-
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+**Função contínua**: função que não apresenta "saltos" ou quebras no seu gráfico, ou seja, pode ser desenhada sem levantar a caneta do papel.
+
+**Variável univariada**: função que depende de uma única variável.
+
+**Composição de funções**: usar uma função dentro de outra, por exemplo, f(g(x)).
+
+**Aproximação**: estimativa ou cálculo que chega próximo do valor real, mas não necessariamente igual.
+
+**Potências de 2**: números obtidos multiplicando 2 por ele mesmo várias vezes (ex: 2, 4, 8, 16, 32...).
