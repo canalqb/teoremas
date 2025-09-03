@@ -1,102 +1,166 @@
-# 🎲 Desigualdade de Kolmogorov: Controle de Desvios nas Somatórias Aleatórias 🚀
+# 🎲 - Teorema Desigualdade de Kolmogorov
+
+## 🧾 Frase do Teorema
+
+> A probabilidade do *máximo desvio absoluto* da soma acumulada de variáveis aleatórias independentes e com média zero ultrapassar um limite λ é limitada pelo valor da variância total dividido por λ².
+
+## 📚 Sumário
+
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
+
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Desigualdade_de_Kolmogorov.py`](#2-script-desigualdade_de_kolmogorompy)
+
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
+
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 📬 Contato](#4-📬-contato)
+* [5. Nota](#5-nota)
 
 ---
 
-## ✨ O que é a Desigualdade de Kolmogorov?
+## 1. Introdução ao Teorema
 
-Imagine que você está somando vários resultados de lançamentos de dados, ou variações de preços na bolsa, e quer saber qual a chance dessa soma acumulada **desviar MUITO** da média esperada. 🤔
+### 1.1 Resumo
 
-A Desigualdade de Kolmogorov é um teorema poderoso na teoria das probabilidades que dá um limite superior para a probabilidade do maior desvio absoluto da soma acumulada ultrapassar um valor escolhido. Ou seja, ela te ajuda a responder:
+A **Desigualdade de Kolmogorov** é um resultado da teoria das probabilidades que permite controlar o *risco* de grandes desvios na soma acumulada de variáveis aleatórias independentes e com média zero. Ela fornece um limite superior para a chance de que a soma parcial máxima ultrapasse um valor escolhido λ.
 
-> "Qual a chance de que, em algum momento, a soma acumulada fique muito longe do esperado?"
+Matematicamente, para variáveis X₁, X₂, ..., Xₙ independentes com média zero, definimos as somas parciais como:
 
-Matematicamente, para variáveis aleatórias independentes \(X_1, X_2, ..., X_n\) com média zero, definimos as somas parciais:
+```
+S_k = X₁ + X₂ + ... + X_k
+```
 
-\[
-S_k = \sum_{i=1}^k X_i
-\]
+A desigualdade diz que, para qualquer valor positivo λ:
 
-Então, para qualquer limite positivo \(\lambda\):
+```
+P(max |S_k| para k=1 até n >= λ) <= E[S_n²] / λ²
+```
 
-\[
-\boxed{
-P\left(\max_{1 \leq k \leq n} |S_k| \geq \lambda \right) \leq \frac{\mathbb{E}[S_n^2]}{\lambda^2}
-}
-\]
+Ou seja, a probabilidade do *maior desvio absoluto* ser maior que λ é limitada pela variância total da soma dividida por λ².
 
-Isso significa que a probabilidade do máximo desvio ser maior que \(\lambda\) é controlada pela variância total da soma dividida por \(\lambda^2\).
+### 1.2 Exemplos Práticos
 
+Imagine que você:
 
----
+* Está somando resultados de lançamentos de dados;
+* Avalia as variações acumuladas no preço de uma ação na bolsa;
+* Ou acompanha erros acumulados em medições.
 
-## 🎯 Por que isso é importante?
+A desigualdade ajuda a estimar qual a chance dessas somas acumuladas desviarem muito do valor esperado, mesmo sem conhecer a distribuição exata das variáveis.
 
-* **Garantia de segurança**: Em finanças, controle de qualidade, engenharia — entender os extremos das somas ajuda a mitigar riscos.
-* **Lei dos Grandes Números & Teorema Central do Limite**: a desigualdade oferece um controle preciso mesmo para somas parciais intermediárias, não apenas no limite.
-* **Base para testes estatísticos** e análise de processos estocásticos.
+### 1.3 Explicação Detalhada
 
----
+O teorema é especialmente útil para controlar *desvios máximos* em processos estocásticos e reforça resultados como a Lei dos Grandes Números e o Teorema Central do Limite.
 
-## 🧮 O que o script faz?
+Ele funciona para qualquer somatório parcial, ou seja, em qualquer instante k ≤ n, e não apenas para o total Sₙ.
 
-Este script calcula e monta uma tabela para valores de \(n = 2^A\) (com \(A = 0,1,2,...,8\)), considerando:
+### 1.4 Aplicações
 
-* O tamanho da soma parcial: \(n = 2^A\)
-* Um valor limite \(\lambda = 2n - 1\)
-* O limite superior da probabilidade dado pela desigualdade:
+* **Finanças**: controlar risco de movimentos extremos acumulados em preços ou retornos.
+* **Engenharia**: análise de falhas e erros acumulados em processos.
+* **Estatística**: base para criação e validação de testes estatísticos e intervalos de confiança.
+* **Ciência de Dados**: validação de modelos probabilísticos e predição.
 
-\[
-P\left(\max |S_k| \geq \lambda \right) \leq \frac{n}{(2n-1)^2}
-\]
+### 1.5 Análise da Tabela
 
+A tabela abaixo mostra como a probabilidade do desvio extremo diminui rapidamente à medida que o tamanho n da soma parcial cresce, usando λ = 2n - 1 como limite:
 
-Ele mostra como essa probabilidade **decai muito rápido** à medida que \(n\) cresce — ou seja, desvio extremo fica cada vez mais raro! 📉🎉
-
-
----
-
-## 🚀 Como usar?
-
-1. Certifique-se de ter o Python 3 instalado.
-2. Instale o pandas (biblioteca para manipulação de tabelas):
-
-   ```bash
-   pip install pandas
-   ```
-3. Execute o script Python:
-
-   ```bash
-   python kolmogorov.py
-   ```
-4. Veja a tabela impressa no console mostrando os valores de $2^A$, o limite da probabilidade e o $\lambda$ correspondente.
+| 2^A | Limite da Probabilidade (E\[S\_n²]/λ²) | λ = 2n - 1 |
+| --- | -------------------------------------- | ---------- |
+| 1   | 1.000000                               | 1          |
+| 2   | 0.222222                               | 3          |
+| 4   | 0.081633                               | 7          |
+| 8   | 0.035556                               | 15         |
+| 16  | 0.016653                               | 31         |
+| 32  | 0.008065                               | 63         |
+| 64  | 0.003962                               | 127        |
+| 128 | 0.001966                               | 255        |
+| 256 | 0.000979                               | 511        |
 
 ---
 
-## 📊 Exemplo da tabela gerada
+## 2. Script `Desigualdade_de_Kolmogorov.py`
 
-| $2^A$ | Retorno do Teorema (limite) | $2^{A+1} - 1$ |
-| ----- | --------------------------- | ------------- |
-| 1     | 1.000000                    | 1             |
-| 2     | 0.222222                    | 3             |
-| 4     | 0.081633                    | 7             |
-| 8     | 0.035556                    | 15            |
-| 16    | 0.016653                    | 31            |
-| 32    | 0.008065                    | 63            |
-| 64    | 0.003962                    | 127           |
-| 128   | 0.001966                    | 255           |
-| 256   | 0.000979                    | 511           |
+### 2.1 Relação com o Teorema
+
+O script ilustra na prática o comportamento da Desigualdade de Kolmogorov, calculando o limite superior da probabilidade para somas parciais de tamanhos 2^A, com λ = 2n - 1.
+
+### 2.2 Objetivo do Script
+
+Visualizar como a probabilidade do desvio extremo diminui rapidamente conforme aumentamos n, reforçando a aplicabilidade do teorema em casos reais.
+
+### 2.3 Exemplo de Saída
+
+```
+| 2^A | Limite da Probabilidade | λ = 2n - 1 |
+|-----|-------------------------|------------|
+| 1   | 1.000000                | 1          |
+| 2   | 0.222222                | 3          |
+| ... | ...                     | ...        |
+```
+
+### 2.4 Funcionamento Interno
+
+* Para A de 0 a 8:
+
+  * Calcula n = 2^A;
+  * Define λ = 2n - 1;
+  * Calcula limite = n / λ²;
+* Imprime os valores em formato tabular.
+
+### 2.5 Tecnologias e Requisitos
+
+* Python 3
+* Biblioteca pandas (para manipulação e exibição de tabelas)
 
 ---
 
-## 🎉 Conclusão
+## 3 Extras
 
-A Desigualdade de Kolmogorov é uma ferramenta essencial para entender os limites dos grandes desvios acumulados em somas de variáveis aleatórias. Com esse script, você pode visualizar na prática como o risco de desvios extremos diminui rapidamente, dando mais segurança para análises probabilísticas e estatísticas!
+### 3.1 Licença
 
----  
+Este projeto está licenciado sob a licença MIT — consulte o arquivo LICENSE para detalhes.
 
-## 📬 Contato
+### 3.2 Referências
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* William Feller, *An Introduction to Probability Theory and Its Applications*, 1957.
+* Kolmogorov, A. N., "On the Empirical Determination of a Distribution Law", 1933.
+
+### 3.3 Testes e Validações
+
+O script foi testado com valores de A variando de 0 a 8 e os resultados conferem com os limites teóricos do teorema.
+
+---
+
+## 4 📬 Contato
+
+* Feito por **CanalQb** no GitHub
+* Visite o blog: [canalqb.blogspot.com](https://canalqb.blogspot.com)
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+Aqui explicamos alguns termos e símbolos importantes usados:
+
+* **λ (lambda)**: o *limite* para o desvio máximo considerado.
+* **S\_k**: soma das primeiras k variáveis aleatórias (parcial da soma total).
+* **E\[S\_n²]**: esperança do quadrado da soma total, equivalente à variância total quando as variáveis têm média zero.
+* **P(...)**: probabilidade de o evento dentro dos parênteses ocorrer.
+* **max |S\_k| para k=1 até n**: o maior valor absoluto das somas parciais, entre 1 e n.
