@@ -1,20 +1,58 @@
-# 🎯 Teorema de Codificação de Huffman + Ajuste Polinomial com Python
+# 📦 - Teorema de Codificação de Huffman
+[![Python](https://img.shields.io/badge/Python-3.8.10-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![LGN](https://img.shields.io/badge/Teorema-Codificação%20de%20Huffman-ff69b4.svg)](https://en.wikipedia.org/wiki/Huffman_coding)
 
-> **"Eficiência máxima, compressão ideal!"** — Huffman, provavelmente.
+## Frase do Teorema
 
-## 📚 Sobre o Teorema
+> **"Eficiência máxima, compressão ideal!"** – Uma forma simples de entender o teorema de Huffman: quanto mais um símbolo aparece, menor deve ser seu código binário.
 
-O **Teorema de Codificação de Huffman** é um dos pilares da teoria da informação. Criado por David Huffman em 1952, ele propõe um método ótimo para compressão de dados sem perdas.
+## Sumário
 
-Em essência:
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Teorema_de_Codificacao_de_Huffman.py`](#2-script-teorema_de_codificacao_de_huffmanpy)
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 Contato](#4-contato)
+* [5. Nota](#5-nota)
 
-* Caracteres (ou dados) mais frequentes recebem códigos menores.
-* Os menos frequentes, códigos maiores.
-* O resultado? **Compressão eficiente** com **reconstrução perfeita** da informação original.
+---
 
-## 🧠 O que este script faz?
+## 1. Introdução ao Teorema
 
-Este projeto não implementa diretamente a árvore de Huffman, mas **analisa os limites teóricos da codificação** com base em três grandezas:
+### 1.1 Resumo
+
+O **Teorema de Codificação de Huffman** mostra como podemos **representar dados de forma eficiente**, atribuindo **códigos binários curtos aos símbolos mais comuns** e códigos mais longos aos menos frequentes. Isso resulta em **compressão de dados sem perda** de informação.
+
+### 1.2 Exemplos Práticos
+
+Imagine que você quer enviar uma mensagem composta de letras. Se a letra "A" aparece 80 vezes e a letra "Z" só aparece 1 vez, o ideal seria usar menos bits para "A" e mais bits para "Z", economizando espaço no total.
+
+### 1.3 Explicação Detalhada
+
+O algoritmo de Huffman constrói uma **árvore binária** onde os símbolos mais frequentes ficam mais próximos da raiz e recebem **códigos menores**. Os códigos gerados não se confundem entre si, pois nenhum é prefixo do outro.
+
+### 1.4 Aplicações
+
+- Compressão de arquivos (ZIP, JPEG, MP3)
+- Transmissão de dados (telecomunicações)
+- Armazenamento de textos e imagens em formatos compactos
+
+### 1.5 Análise da Tabela
+
+O script usa uma tabela com os seguintes campos:
 
 | Símbolo | Significado                                      |
 | ------- | ------------------------------------------------ |
@@ -22,85 +60,55 @@ Este projeto não implementa diretamente a árvore de Huffman, mas **analisa os 
 | `y`     | Número mínimo de bits necessários para codificar |
 | `z`     | Tamanho da maior palavra binária possível        |
 
-A ideia é mostrar como o número de bits cresce em função do número de símbolos e como isso se relaciona com a **eficiência do código**.
-
 ---
 
-## 🔍 O que está acontecendo no script?
+## 2. Script `Teorema_de_Codificacao_de_Huffman.py`
 
-1. **Importação de bibliotecas úteis**:
+### 2.1 Relação com o Teorema
 
-   * `numpy`, `pandas`, `plotly`, `sklearn`: para manipulação, modelagem e visualização dos dados.
+O script **não gera a árvore de Huffman**, mas **simula a eficiência teórica** do processo de codificação, comparando `y` (bits utilizados) com `z` (limite superior).
 
-2. **Definição de dados reais**:
+### 2.2 Objetivo do Script
 
-   * Conjuntos de valores `x`, `y`, `z` representando a relação entre número de símbolos e comprimento de codificação.
+Mostrar, por meio de gráficos e análise de dados, **como o número de bits cresce conforme o número de símbolos aumenta**.
 
-3. **Ajuste Polinomial**:
-
-   * Um modelo polinomial de grau 2 é ajustado para prever como `y` (número de bits) cresce com `x`.
-
-4. **Predição do futuro** (✨):
-
-   * Calcula `y` para `x = 65536`, o próximo passo na tabela.
-   * Compara com `z`, o valor máximo esperado segundo o Teorema de Huffman.
-
-5. **Visualização Interativa**:
-
-   * Um gráfico interativo usando Plotly mostra os pontos reais e a curva do modelo polinomial, ilustrando o crescimento do custo de codificação.
-
----
-
-## 📈 Gráfico gerado
-
-O gráfico mostra:
-
-* Pontos reais (valores tabulados de `x`, `y`, `z`)
-* A curva do modelo polinomial representando a tendência de crescimento de `y`
-* Tooltip interativa com os valores `x`, `y`, `z`
-
----
-
-## 🧪 Exemplo de saída (console)
+### 2.3 Exemplo de Saída
 
 ```
-     x      y      z
-     1      1      1
-     2      3      3
-     4      7      7
-     8      8     15
-    ...
- 32768  51510  65535
- 65536 109398 131071
+
+```
+ x      y      z
+ 1      1      1
+ 2      3      3
+ 4      7      7
+ 8      8     15
+...
 ```
 
-Note como `y` cresce rapidamente, mas ainda mantém-se abaixo de `z` — uma demonstração prática do limite teórico de Huffman.
+32768  51510  65535
+65536 109398 131071
 
----
+````
 
-## ⚠️ Observações técnicas
+📝 Isso mostra que, mesmo com o aumento de símbolos, o número de bits `y` ainda está dentro do limite teórico `z`.
 
-* Um warning do `sklearn` aparece ao prever valores fora do dataframe original. Isso não afeta a execução.
-* O modelo polinomial é apenas uma aproximação; Huffman é mais eficiente que uma simples função matemática.
+### 2.4 Funcionamento Interno
 
----
+1. **Importa bibliotecas**: `numpy`, `pandas`, `plotly`, `sklearn`
+2. **Define os dados**: Tabela com `x`, `y`, `z`
+3. **Ajuste polinomial**: Aplica uma curva de segundo grau sobre os dados
+4. **Predição**: Calcula `y` para `x = 65536` usando o modelo
+5. **Visualização**: Gera gráfico com pontos e curva interativa
 
-## 💡 Conclusão
+### 2.5 Tecnologias e Requisitos
 
-Este projeto é uma bela combinação de **teoria da computação**, **estatística** e **visualização de dados** para entender um dos teoremas mais importantes da compressão de dados.
-
-🎉 **Experimente, visualize, explore!**
-Veja como a matemática explica o limite da codificação — e como Huffman chegou lá primeiro.
-
----
-
-## 🚀 Como executar
+Execute com:
 
 ```bash
 python Teorema_de_Codificacao_de_Huffman.py
-```
+````
 
-Certifique-se de ter instalado as bibliotecas:
+Requisitos:
 
 ```bash
 pip install numpy pandas plotly scikit-learn
@@ -108,26 +116,43 @@ pip install numpy pandas plotly scikit-learn
 
 ---
 
-## 📂 Estrutura
+## 3 Extras
 
-```
-📁 Teoremas/
-│
-├── Teorema_de_Codificacao_de_Huffman.py
-└── README.md  ← você está aqui 😄
-```
+### 3.1 Licença
+
+Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+### 3.2 Referências
+
+* Huffman Coding - Wikipedia: [https://en.wikipedia.org/wiki/Huffman\_coding](https://en.wikipedia.org/wiki/Huffman_coding)
+* David Huffman - [https://en.wikipedia.org/wiki/David\_A.\_Huffman](https://en.wikipedia.org/wiki/David_A._Huffman)
+
+### 3.3 Testes e Validações
+
+* O script foi testado com Python 3.8.10
+* As bibliotecas são de uso estável
+* O modelo polinomial gera saída coerente com a tabela
 
 ---
 
-## 🧠 Curiosidade
+## 4 Contato
 
-> Huffman desenvolveu seu algoritmo como parte de um trabalho de classe. Seu professor, Robert Fano, também criou outro método de codificação (Fano Coding)... que foi superado pelo aluno. 😅 
-
----
-
-## 📬 Contato
-
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+* **Compressão sem perdas**: Significa que você pode recuperar exatamente os dados originais após a compressão.
+* **Código binário**: É uma sequência de 0s e 1s usada para representar dados.
+* **Árvore binária**: Estrutura usada para decidir os códigos com base em frequência.
+* **Prefixo**: Em codificação, um código não pode começar com outro. Ex: se “A” é 0 e “B” é 01, isso causaria confusão.
+* **Ajuste polinomial**: Técnica estatística que ajusta uma curva (parábola) para prever comportamentos futuros.
+* **x**: Número total de símbolos diferentes.
+* **y**: Número de bits usados com eficiência, de acordo com a frequência dos símbolos.
+* **z**: Limite superior de bits se usarmos o mesmo número de bits para todos os símbolos (ex: 8 símbolos → 3 bits cada).
