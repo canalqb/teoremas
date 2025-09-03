@@ -75,20 +75,18 @@ Mostrar, por meio de gráficos e análise de dados, **como o número de bits cre
 ### 2.3 Exemplo de Saída
 
 ```
-
-```
  x      y      z
  1      1      1
  2      3      3
  4      7      7
  8      8     15
+```
 ...
 ```
-
 32768  51510  65535
 65536 109398 131071
 
-````
+```
 
 📝 Isso mostra que, mesmo com o aumento de símbolos, o número de bits `y` ainda está dentro do limite teórico `z`.
 
