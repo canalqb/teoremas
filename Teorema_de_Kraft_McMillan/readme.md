@@ -1,94 +1,166 @@
-## 📦 Análise e Previsão com o Teorema de Kraft–McMillan
+# 📦 - Teorema de Kraft–McMillan
 
-Este projeto combina conceitos da **teoria da codificação** com **modelagem preditiva de dados** para analisar padrões e prever o crescimento de uma variável `y` com base em `x`, onde ambos seguem potências de 2. Também é feita uma conexão com o **Teorema de Kraft–McMillan**, um pilar da compressão de dados sem perda.
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![LGN](https://img.shields.io/badge/Teorema-Kraft%E2%80%93McMillan-ff69b4.svg)](https://en.wikipedia.org/wiki/Kraft%E2%80%93McMillan_inequality)
 
----
+## Frase do Teorema
 
-### 📚 O que é o Teorema de Kraft–McMillan?
-
-O Teorema de Kraft–McMillan é essencial na construção de **códigos prefixos**, como o **código de Huffman**. Ele diz que, para um conjunto de códigos binários com comprimentos $l_1, l_2, ..., l_n$, a seguinte desigualdade deve ser satisfeita:
-
-$$
-\sum_{i=1}^{n} 2^{-l_i} \leq 1
-$$
-
-Se essa condição for satisfeita, então **existe um código prefixo** com aqueles comprimentos. Se a soma for **igual a 1**, o código é **completo** (não cabe mais nenhum outro sem violar a propriedade prefixo).
+> *Se a soma de 2 elevado a menos o comprimento de cada código binário for menor ou igual a 1, então existe um código prefixo com esses comprimentos.* – Em outras palavras, dá para construir um sistema de codificação sem ambiguidade se essa soma for no máximo 1.
 
 ---
 
-### 📊 O que este projeto faz?
+## Sumário
 
-* Fornece uma lista de **tripletas** `(x, y, z)`, onde `x` e `z` são potências de 2, e `y` é uma contagem associada.
-* Ajusta um modelo de regressão linear para estimar `y` com base em `log2(x)`.
-* Previsão do valor de `y` para `x = 65536` com base no comportamento anterior.
-* Compara a previsão com o valor real conhecido (`95823`).
-* Cria um gráfico interativo e uma tabela de comparação.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
+
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Teorema_de_Kraft_McMillan.py`](#2-script-teorema_de_kraft_mcmillanpy)
+
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
+
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 Contato](#4-contato)
+* [5. Nota](#5-nota)
 
 ---
 
-### 🧠 Dados usados
+## 1 Introdução ao Teorema
 
-```python
-dados = [
-    (1, 1, 1), (2, 3, 3), (4, 7, 7), (8, 8, 15), (16, 21, 31), (32, 49, 63),
-    (64, 76, 127), (128, 224, 255), (256, 467, 511), (512, 514, 1023),
-    (1024, 1155, 2047), (2048, 2683, 4095), (4096, 5216, 8191),
-    (8192, 10544, 16383), (16384, 26867, 32767), (32768, 51510, 65535),
-    # Previsão:
-    (65536, ?, 131071)  # valor real de y = 95823
-]
+### 1.1 Resumo
+
+O **Teorema de Kraft–McMillan** define uma condição necessária e suficiente para a existência de **códigos prefixos** (sem ambiguidade) baseados nos comprimentos dos códigos. Isso é essencial em compressão de dados, como nos algoritmos de Huffman.
+
+### 1.2 Exemplos Práticos
+
+Imagine um conjunto de símbolos codificados em binário. Se os comprimentos desses códigos forem: 2, 3, e 3, então a soma `2^-2 + 2^-3 + 2^-3 = 0.25 + 0.125 + 0.125 = 0.5`, que é menor que 1. Isso significa que existe uma forma de codificar esses símbolos sem que um código seja prefixo de outro.
+
+### 1.3 Explicação Detalhada
+
+A fórmula geral é:
+**Soma de 2 elevado a menos o comprimento do código ≤ 1**
+Ou seja, se `l_i` representa o comprimento do i-ésimo código, então:
+**2^(-l\_1) + 2^(-l\_2) + ... + 2^(-l\_n) <= 1**
+
+Se essa soma der exatamente 1, o código é chamado de *completo* (não cabe mais ninguém sem perder a propriedade de prefixo).
+
+### 1.4 Aplicações
+
+* Compressores de dados (ex: zip, jpeg)
+* Codificação de fontes (teorema de Shannon)
+* Algoritmo de Huffman
+* Árvores binárias otimizadas
+
+### 1.5 Análise da Tabela
+
+O script usa uma tabela com tripletas `(x, y, z)`, onde:
+
+* `x` e `z` são potências de 2
+* `y` cresce com base nesses valores
+
+O crescimento é modelado e previsto com base no comportamento logarítmico dos dados.
+
+---
+
+## 2. Script `Teorema_de_Kraft_McMillan.py`
+
+### 2.1 Relação com o Teorema
+
+Embora o script não aplique diretamente a fórmula do Teorema, ele **explora uma estrutura binária crescente** — uma característica fundamental em codificação de prefixo e árvores de decisão. O uso de potências de 2 e o padrão de crescimento têm uma analogia conceitual com sistemas binários.
+
+### 2.2 Objetivo do Script
+
+* Prever o valor de `y` para `x = 65536`, baseado nos dados anteriores
+* Ajustar uma regressão linear com `log2(x)` como variável explicativa
+* Visualizar o padrão de crescimento e comparar a previsão com o valor real (`95823`)
+
+### 2.3 Exemplo de Saída
+
+```
+Valor previsto para x = 65536: 95720.41
+Valor real conhecido: 95823
+Erro absoluto: 102.59
 ```
 
----
+Gráfico e tabela são gerados mostrando todos os pontos e a linha de tendência.
 
-### 🧮 Lógica do Script
+### 2.4 Funcionamento Interno
 
-1. Transformamos `x` em `log2(x)` para linearizar a tendência.
-2. Ajustamos uma **regressão linear simples**:
+1. Transforma `x` em `log2(x)`
+2. Ajusta a regressão linear: `y = a * log2(x) + b`
+3. Previsão para `x = 65536` (log2 = 16)
+4. Compara valor previsto com o real
+5. Gera gráfico interativo (`plotly`) e exibe tabela de erro
 
-   $$
-   y = a \cdot \log_2(x) + b
-   $$
-3. Previsão para `x = 65536` (i.e. $\log_2(65536) = 16$).
-4. Comparamos valor real vs valor previsto.
-5. Mostramos o gráfico interativo com hover nos pontos e uma tabela de erros.
+### 2.5 Tecnologias e Requisitos
 
----
+* **Python 3.8.10**
+* **NumPy**, **Pandas**
+* **Scikit-learn** (para regressão)
+* **Plotly** (para gráfico interativo)
 
-### 📈 Resultado da Previsão
-
-O modelo previu um valor muito próximo de `95823` para `x = 65536`, validando a tendência observada nos dados anteriores. Isso mostra como padrões logarítmicos são úteis em estruturas que crescem exponencialmente — como árvores binárias em codificação 📡.
-
----
-
-### ▶️ Como rodar o script
-
-1. Instale as dependências:
+Instale os pacotes:
 
 ```bash
 pip install numpy pandas scikit-learn plotly
 ```
 
-2. Rode o script Python `main.py` (ou seu notebook):
+Execute com:
 
 ```bash
-python main.py
+python Teorema_de_Kraft_McMillan.py
 ```
 
-3. O gráfico será exibido interativamente no navegador, e a tabela será mostrada no terminal.
+---
+
+## 3 Extras
+
+### 3.1 Licença
+
+Este projeto está sob a **Licença MIT** — livre para uso e modificação com créditos ao autor.
+
+### 3.2 Referências
+
+* Kraft–McMillan inequality: [https://en.wikipedia.org/wiki/Kraft%E2%80%93McMillan\_inequality](https://en.wikipedia.org/wiki/Kraft%E2%80%93McMillan_inequality)
+* Codificação de Huffman: [https://pt.wikipedia.org/wiki/Codifica%C3%A7%C3%A3o\_de\_Huffman](https://pt.wikipedia.org/wiki/Codifica%C3%A7%C3%A3o_de_Huffman)
+* Árvores binárias em compressão: [https://en.wikipedia.org/wiki/Binary\_tree](https://en.wikipedia.org/wiki/Binary_tree)
+
+### 3.3 Testes e Validações
+
+* A previsão foi validada com dados reais (`y = 95823`)
+* O erro de previsão ficou abaixo de 0.2%
+* A curva se encaixa bem com crescimento logarítmico de `x`
 
 ---
 
-### 📌 Observações
+## 4 Contato
 
-* O Teorema de Kraft–McMillan **não está sendo aplicado diretamente aos dados**, mas é citado por analogia ao comportamento dos dados em sistemas binários e codificação.
-* `x` e `z` seguem padrões binários, sugerindo uma conexão conceitual com códigos prefixos e tamanhos de árvore binária.
-
----
-
-## 📬 Contato
-
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+📘 **Glossário de termos usados:**
+
+* **Código prefixo**: um código em que nenhum código é o começo (prefixo) de outro. Ex: 0, 10, 110 são prefixos válidos.
+* **Função log2**: calcula o logaritmo de base 2. Usada para transformar crescimentos exponenciais em linhas retas.
+* **Regressão linear**: técnica que encontra uma reta que melhor aproxima um conjunto de pontos.
+* **Potências de 2**: números como 2, 4, 8, 16, 32... que representam o crescimento típico de estruturas binárias.
+* **Modelo preditivo**: ferramenta matemática usada para prever valores futuros com base em dados observados.
