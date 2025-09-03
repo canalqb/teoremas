@@ -135,10 +135,17 @@ Você pode ajustar os pesos (0.7 e 0.3) para ver como isso afeta a precisão.
 
 ## 5. Nota
 
+## 5. Nota
+
 **Teorema da Escolha:** Garante que podemos escolher um elemento de cada conjunto, mesmo sem uma regra de escolha.
+
 **Valor Esperado:** É uma média que representa o valor típico que se espera obter em uma situação.
+
 **Média Ponderada:** Uma média onde alguns números têm mais "peso" que outros. Por exemplo: `0.7 * início + 0.3 * fim`.
+
 **Início do Intervalo:** Corresponde a `2^N`.
+
 **Fim do Intervalo:** Corresponde a `2^(N+1) - 1`.
+
 **Estimativa:** Aproximação feita com base na posição entre início e fim.
  
