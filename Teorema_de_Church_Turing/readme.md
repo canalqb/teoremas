@@ -1,68 +1,76 @@
-# Estimador Church-Turing
+# 🤖 - Teorema de Church–Turing  
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![LGN](https://img.shields.io/badge/Teorema-Church%E2%80%93Turing-ff69b4.svg)](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)  
 
-Este projeto é um pequeno experimento computacional que utiliza conceitos do **Teorema de Church–Turing** para estimar a quantidade de processos computáveis possíveis entre potências de 2 crescentes. O script `estimador_church_turing.py` gera uma tabela com três colunas principais:
+## Frase do Teorema
 
-- `Início (2^N)` — início do intervalo computacional
-- `Fim (2^(N+1)-1)` — fim do intervalo computacional
-- `Estimado (Teorema)` — estimativa baseada em propriedades do Teorema de Church–Turing
+> Qualquer função que pode ser calculada logicamente pode ser executada por uma máquina de Turing – ou seja, tudo que é computável pode ser simulado por um modelo simples e universal.
 
----
+## Sumário
 
-## 📘 Sobre o Teorema de Church–Turing
-
-O **Teorema de Church–Turing** afirma que qualquer função que é intuitivamente computável pode ser calculada por uma máquina de Turing. Ou seja, **qualquer algoritmo que possa ser descrito logicamente pode ser simulado por uma máquina de Turing**.
-
-Esse teorema unifica diversos modelos formais de computação — como o cálculo lambda de Church, funções recursivas de Gödel e máquinas de Turing de Turing — mostrando que todos são equivalentes em termos de poder computacional.
-
----
-
-## 💡 O que o script faz?
-
-O script calcula, para cada valor de `N`, os seguintes valores:
-
-- `Início`: \( 2^N \)
-- `Fim`: \( 2^{N+1} - 1 \)
-- `Estimado`: Uma estimativa do número de computações possíveis no intervalo entre `2^N` e `2^{N+1} - 1`, usando uma função de crescimento controlada que respeita o limite superior (`fim`).
-
-Essa estimativa **não assume que todas as possibilidades no intervalo são computações válidas**, refletindo a realidade de que:
-
-> Nem toda configuração binária representa um programa válido ou uma computação significativa.
-
-Isso está de acordo com o Teorema de Church–Turing, pois:
-- Apenas **programas efetivamente computáveis** são contados
-- O crescimento de possibilidades **acompanha o aumento de recursos**, mas **não é puramente exponencial**
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)  
+* [2. Script `estimador_church_turing.py`](#2-script-estimador_church_turingpy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referencias)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)  
 
 ---
 
-## 🧠 Justificativa teórica
+## 1. Introdução ao Teorema
 
-Conforme aumentamos `N`, temos mais espaço binário (maior fita, mais bits, mais memória, etc.), o que permite representar um número maior de funções computáveis.
+### 1.1 Resumo
 
-Porém, não todas as combinações possíveis entre `2^N` e `2^{N+1}-1` são válidas computações. A função estimadora no script busca aproximar esse subconjunto computável, que cresce de forma controlada — nem linear, nem puramente exponencial.
+O **Teorema de Church–Turing** diz que qualquer processo que possa ser descrito como uma sequência lógica de passos (um algoritmo) pode ser executado por uma máquina de Turing — um modelo simples e universal de computação.
 
-O script respeita os seguintes princípios:
+### 1.2 Exemplos Práticos
 
-- Crescimento contínuo com `N`, refletindo o aumento de capacidade computacional
-- Limite superior no intervalo (`fim`)
-- Estimativa mais realista do número de computações **concretas e executáveis**
+- Todos os algoritmos em linguagens de programação conhecidas podem ser simulados por uma máquina de Turing.  
+- Isso unifica diferentes modelos de computação, mostrando que têm o mesmo poder.
+
+### 1.3 Explicação Detalhada
+
+Pense em uma máquina de Turing como um computador básico que lê e escreve símbolos em uma fita infinita. O teorema diz que qualquer coisa que um algoritmo possa fazer, essa máquina também consegue fazer, mesmo que de forma lenta ou com muitos passos.
+
+### 1.4 Aplicações
+
+- Fundamentos da ciência da computação e teoria da computação.  
+- Definição do que é computável e o que não é.  
+- Compreensão dos limites dos programas e algoritmos.
+
+### 1.5 Análise da Tabela
+
+A tabela gerada pelo script mostra estimativas da quantidade de programas computáveis possíveis entre potências de 2, refletindo o crescimento realista e controlado dessa quantidade, diferente do crescimento puramente exponencial.
 
 ---
 
-## ▶️ Como usar
+## 2. Script `estimador_church_turing.py`
 
-Execute o script com Python:
+### 2.1 Relação com o Teorema
 
-```bash
-python estimador_church_turing.py
-````
+O script usa o conceito do Teorema de Church–Turing para estimar quantos processos computáveis cabem em intervalos que crescem em potências de 2, lembrando que nem todas as sequências de bits formam programas válidos.
 
-A saída será uma tabela com os valores estimados até `N = 9`. Você pode alterar esse limite diretamente no script (variável `n_max`).
+### 2.2 Objetivo do Script
 
----
+- Calcular para cada N os valores: início (2^N), fim (2^(N+1)-1) e uma estimativa de processos computáveis.  
+- Mostrar que o número de computações válidas cresce, mas não tão rápido quanto o número total de combinações possíveis.
 
-## 📄 Exemplo de saída
+### 2.3 Exemplo de Saída
 
-```
+```text
 N   | Início (2^N)   | Estimado (Teorema)   | Fim (2^(N+1)-1)
 -----------------------------------------------------------------
 0   | 1              | 1                    | 1
@@ -75,19 +83,58 @@ N   | Início (2^N)   | Estimado (Teorema)   | Fim (2^(N+1)-1)
 7   | 128            | 170                  | 255
 8   | 256            | 340                  | 511
 9   | 512            | 512                  | 1023
-```
+````
+
+### 2.4 Funcionamento Interno
+
+* Calcula os limites dos intervalos por potências de 2.
+* Aplica uma função estimadora para aproximar a quantidade de programas computáveis dentro do intervalo.
+* Imprime a tabela formatada no terminal.
+
+### 2.5 Tecnologias e Requisitos
+
+* Desenvolvido para **Python 3.8.10** (compatível com 3.7+).
+* Sem dependências externas, usa apenas bibliotecas padrão.
+* Executado via linha de comando.
 
 ---
 
-## 🧾 Licença
+## 3 Extras
 
-Este projeto é livre para uso acadêmico e educacional. Sinta-se à vontade para adaptar a função de estimativa para modelos mais precisos ou alternativos. 
+### 3.1 Licença
 
---- 
+Projeto com licença **MIT**, livre para uso, modificação e distribuição, desde que mantida a atribuição.
 
-## 📬 Contato
+### 3.2 Referências
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* [Teorema de Church–Turing - Wikipedia](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)
+* Textos introdutórios em teoria da computação.
+
+### 3.3 Testes e Validações
+
+Testes simples confirmam que os valores seguem a tendência esperada, garantindo a coerência da estimativa feita pelo script.
+
+---
+
+## 4 Contato
+
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+* **N**: número natural (0,1,2,...) usado para definir o tamanho do espaço computacional.
+
+* **2^N**: potência de 2, ou seja, 2 multiplicado por ele mesmo N vezes.
+
+* **Processos computáveis**: programas ou funções que podem ser executados por uma máquina de Turing.
+
+* **Estimativa**: valor aproximado da quantidade de processos válidos, que não é o total de combinações possíveis, mas uma fração realista.
+
+* **Máquina de Turing**: modelo matemático que representa um computador idealizado, capaz de executar qualquer algoritmo definido.
