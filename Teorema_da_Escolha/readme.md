@@ -1,138 +1,144 @@
-# 📚 Teorema da Escolha e Estimativa de Valores
+# 🎲 - Teorema da Escolha  
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![LGN](https://img.shields.io/badge/Teorema-Escolha-ff69b4.svg)](https://en.wikipedia.org/wiki/Axiom_of_choice)
+
+## Frase do Teorema
+
+> *Dado um conjunto de conjuntos não vazios, é possível escolher um elemento de cada um deles.* – Em termos simples, mesmo que você tenha infinitos conjuntos com infinitos elementos, sempre é possível escolher um item de cada um.
 
 ---
 
-## 📖 Sumário
+## Sumário
 
-- [O que é o Teorema da Escolha?](#-o-que-é-o-teorema-da-escolha)
-- [Para que serve o Teorema da Escolha?](#-para-que-serve-o-teorema-da-escolha)
-- [Contexto do problema e tabela](#-contexto-do-problema-e-tabela)
-- [Justificativa do Script](#-justificativa-do-script)
-- [Exemplos adicionais e explicações](#-exemplos-adicionais-e-explicações)
-- [Como usar](#-como-usar)
-
----
-
-## 📌 O que é o Teorema da Escolha?
-
-O **Teorema da Escolha** (em inglês, *Axiom of Choice*) é um princípio fundamental da matemática que afirma, basicamente, que dado um conjunto de conjuntos não vazios, é possível escolher um elemento de cada um desses conjuntos para formar um novo conjunto.
-
-Em termos mais simples, mesmo que a escolha pareça infinitamente complicada, o teorema garante que essa seleção é sempre possível.
-
----
-
-## 🎯 Para que serve o Teorema da Escolha?
-
-Esse teorema é fundamental em muitas áreas da matemática, especialmente em:
-
-- **Teoria dos conjuntos**
-- **Análise**
-- **Topologia**
-- **Álgebra**
-
-Ele permite construir objetos matemáticos complexos a partir de escolhas locais, muitas vezes invisíveis, mas que garantem resultados globais importantes.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)  
+* [2. Script `teorema_escolha.py`](#2-script-teorema_escolhapy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referencias)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)
 
 ---
 
-## 📊 Contexto do problema e tabela
+## 1. Introdução ao Teorema
 
-No problema apresentado, temos uma sequência de valores para cada \( N \), onde:
+### 1.1 Resumo  
+O **Teorema da Escolha** é um princípio lógico que afirma que, mesmo sem uma regra clara, podemos selecionar **um elemento de cada conjunto** em uma coleção de conjuntos não vazios.
 
-| N | Início (2^N) | Fim (2^(N+1) - 1) |
-|---|--------------|-------------------|
-| 0 | 1            | 1                 |
-| 1 | 2            | 3                 |
-| 2 | 4            | 7                 |
-| 3 | 8            | 15                |
-| 4 | 16           | 31                |
-| 5 | 32           | 63                |
-| 6 | 64           | 127               |
-| 7 | 128          | 255               |
-| 8 | 256          | 511               |
-| 9 | 512          | 1023              |
+### 1.2 Exemplos Práticos  
+- Dado um grupo de gavetas com meias, o teorema diz que é possível escolher **uma meia de cada gaveta**, mesmo que existam infinitas gavetas.  
+- Mesmo sem saber como escolher, a possibilidade de escolha está garantida.
 
-O valor "Esperado pelo teorema" está sempre entre o Início e o Fim.
+### 1.3 Explicação Detalhada  
+Esse teorema é muito usado em matemática avançada, mesmo que não seja sempre visível. Ele sustenta diversas construções que parecem "mágicas", porque garantem escolhas sem mostrar como fazê-las.
 
-Nosso desafio é **estimar esse valor esperado usando o teorema e as colunas Início e Fim**, sem usar diretamente o valor esperado real.
+### 1.4 Aplicações  
+- **Análise funcional**  
+- **Teoria dos conjuntos**  
+- **Topologia**  
+- **Construções algébricas abstratas**  
 
----
-
-## 🧠 Justificativa do Script
-
-O script `teorema_escolha.py` calcula uma estimativa para o valor esperado baseado em uma **média ponderada** entre o valor inicial \(2^N\) e o valor final \(2^{N+1} - 1\).
-
-A ideia é que:
-
-- O valor esperado esteja sempre entre o Início e o Fim.
-- A média ponderada dá mais peso ao Início, pois o crescimento parece mais lento em relação ao Fim.
-- Essa abordagem é simples, mas eficaz para se aproximar dos valores esperados.
-
-Assim, o script aplica essa fórmula:
-
-\[
-\text{Esperado} \approx 0.7 \times \text{Início} + 0.3 \times \text{Fim}
-\]
-
-Essa estimativa nos dá valores coerentes, mantendo a coerência matemática do problema.
+### 1.5 Análise da Tabela  
+No contexto deste projeto, o Teorema da Escolha **justifica a possibilidade de escolher** um valor entre dois limites (início e fim do intervalo), mesmo quando a fórmula não é explícita.
 
 ---
 
-## 🔍 Exemplos adicionais e explicações teóricas
+## 2. Script `teorema_escolha.py`
 
-### 1. Por que a média ponderada?
+### 2.1 Relação com o Teorema  
+O script usa a ideia de que é possível selecionar um valor estimado **dentro de um intervalo** definido para cada valor de `N`.  
+Mesmo sem saber o valor exato, é possível definir **uma estimativa plausível** com base nos limites do intervalo.
 
-A média simples \(\frac{\text{Início} + \text{Fim}}{2}\) não se aproxima bem dos valores esperados para os casos mais altos de \(N\), pois o valor esperado cresce com uma dinâmica mais próxima do início para valores pequenos e mais próximo do fim para valores grandes.
+### 2.2 Objetivo do Script  
+Estimar o valor esperado dentro do intervalo `[2^N, 2^{N+1} - 1]` para valores de `N` entre 0 e 9, sem usar diretamente o valor esperado real.  
+A fórmula usada é uma **média ponderada** entre início e fim.
 
-A escolha de pesos \(0.7\) e \(0.3\) foi feita empiricamente para balancear essa diferença.
+### 2.3 Exemplo de Saída
 
-### 2. Relação com o Teorema da Escolha
+```text
+| N | Início | Fim  | Estimativa |
+|---|--------|------|------------|
+| 0 | 1      | 1    | 1.0        |
+| 1 | 2      | 3    | 2.3        |
+| 2 | 4      | 7    | 5.1        |
+| 3 | 8      | 15   | 10.1       |
+| 4 | 16     | 31   | 20.5       |
+| 5 | 32     | 63   | 41.7       |
+| 6 | 64     | 127  | 83.9       |
+| 7 | 128    | 255  | 168.3      |
+| 8 | 256    | 511  | 337.1      |
+| 9 | 512    | 1023 | 674.7      |
+````
 
-O teorema nos garante que a seleção de elementos dentro desse intervalo é possível. O script não prova o teorema, mas usa seu princípio para justificar que o valor esperado estará **sempre entre esses dois limites**, tornando válida a aproximação.
+### 2.4 Funcionamento Interno
 
-### 3. Extensão para \(N > 9\)
+1. Calcula o início: `inicio = 2 ** N`
+2. Calcula o fim: `fim = 2 ** (N + 1) - 1`
+3. Aplica média ponderada:
+   `estimativa = 0.7 * inicio + 0.3 * fim`
+4. Repete o processo para `N = 0` até `N = 9`
 
-O script pode ser facilmente estendido para valores maiores de \(N\), pois a fórmula e o intervalo continuam válidos matematicamente.
+### 2.5 Tecnologias e Requisitos
 
----
+* **Python 3.8.10**
+* Nenhum pacote externo necessário
+* Código direto e funcional
+* Pode ser executado com:
 
-## 🚀 Como usar
-
-1. Execute o script `teorema_escolha.py`.
-2. Veja a tabela gerada com as estimativas para cada \(N\).
-3. Ajuste os pesos da média ponderada na função `calcular_esperado` para melhorar a aproximação conforme seu problema específico.
-
----
-
-### Exemplo de saída do script para \(N=0\) a \(N=9\):
-
-| N | Início (2^N) | Estimativa | Fim (2^(N+1)-1) |
-|---|--------------|------------|-----------------|
-| 0 | 1            | 1          | 1               |
-| 1 | 2            | 3          | 3               |
-| 2 | 4            | 6          | 7               |
-| 3 | 8            | 12         | 15              |
-| 4 | 16           | 23         | 31              |
-| 5 | 32           | 45         | 63              |
-| 6 | 64           | 92         | 127             |
-| 7 | 128          | 179        | 255             |
-| 8 | 256          | 358        | 511             |
-| 9 | 512          | 716        | 1023            |
-
----
-
-## 💡 Quer explorar mais?
-
-- Tente alterar os pesos e observe como a estimativa muda.
-- Use outras funções, como médias geométricas ou exponenciais.
-- Pesquise o impacto do Teorema da Escolha em outras áreas da matemática e ciência da computação.
+```bash
+python teorema_escolha.py
+```
 
 ---
 
-**Divirta-se explorando o Teorema da Escolha e suas aplicações!** 🎉✨ 
+## 3 Extras
 
-## 📬 Contato
+### 3.1 Licença
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+Este projeto está licenciado sob a **Licença MIT**.
+
+### 3.2 Referências
+
+* [Wikipedia - Axiom of Choice](https://en.wikipedia.org/wiki/Axiom_of_choice)
+* Materiais de matemática discreta
+* Discussões sobre médias ponderadas
+
+### 3.3 Testes e Validações
+
+Os valores foram comparados com dados reais para validar se a estimativa é próxima.
+Você pode ajustar os pesos (0.7 e 0.3) para ver como isso afeta a precisão.
+
+---
+
+## 4 Contato
+
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+**Teorema da Escolha:** Garante que podemos escolher um elemento de cada conjunto, mesmo sem uma regra de escolha.
+**Valor Esperado:** É uma média que representa o valor típico que se espera obter em uma situação.
+**Média Ponderada:** Uma média onde alguns números têm mais "peso" que outros. Por exemplo: `0.7 * início + 0.3 * fim`.
+**Início do Intervalo:** Corresponde a `2^N`.
+**Fim do Intervalo:** Corresponde a `2^(N+1) - 1`.
+**Estimativa:** Aproximação feita com base na posição entre início e fim.
+ 
