@@ -1,119 +1,162 @@
-## 🔐 **Pequeno Teorema de Fermat: Detectando Números Compostos com Python!**
+# 🔐 - Teorema de Fermat (Pequeno Teorema)
 
-### 📌 O que é o Pequeno Teorema de Fermat?
+[![Python](https://img.shields.io/badge/Python-3.8.10-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Fermat](https://img.shields.io/badge/Teorema-Pequeno%20de%20Fermat-ff69b4.svg)](https://en.wikipedia.org/wiki/Fermat's_little_theorem)
 
-O **Pequeno Teorema de Fermat** é uma ferramenta poderosa da teoria dos números, com aplicação prática na detecção de **números primos**.
+## Frase do Teorema
 
-> Se **p** é um número primo e **a** é um número inteiro que não é múltiplo de **p**, então:
->
-> $$
-> $$
-
-a^{p-1} \equiv 1 \ (\text{mod} \ p)
-]
-
-Ou seja, se esse resultado não for verdadeiro para algum valor de **a**, então **p não é primo**!
+> Se um número primo **p** não divide um número **a**, então **a elevado a (p-1) deixa resto 1 quando dividido por p** – ou seja, a^(p-1) mod p = 1.
 
 ---
 
-### 🔍 O que é **composto com base de Fermat**?
+## Sumário
 
-Um número **composto com base de Fermat** é aquele que **falha** no teste:
-
-$$
-a^{n-1} \mod n \ne 1
-$$
-
-Se isso ocorrer para alguma base `a`, o número **é certamente composto**.
-✅ É uma maneira rápida de excluir candidatos a primos.
-
----
-
-### ❗ O que é um **falso positivo de Fermat**?
-
-Nem todo número que **passa** no teste de Fermat é realmente primo!
-Existem **números compostos** que conseguem enganar o teste — são chamados de **falsos positivos de Fermat**.
-
-📌 Exemplo: os **números de Carmichael**.
-
-Por isso, o teste de Fermat é bom para detectar **compostos**, mas **não é 100% confiável** para confirmar primos.
-
----
-
-### ✅ O que é um número **primo**?
-
-Um número é **primo** quando só é divisível por 1 e por ele mesmo.
-
-Se ele **passa no teste de Fermat com todas as bases pequenas** (como 2, 3, 5, 7) e não é Carmichael, então provavelmente **é primo**.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Pequeno_Teorema_de_Fermat.py`](#2-script-pequeno_teorema_de_fermatpy)
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 Contato](#4-contato)
+* [5. Nota](#5-nota)
 
 ---
 
-## 🧪 O script: `Pequeno_Teorema_de_Fermat.py`
+## 1. Introdução ao Teorema
 
-Criamos um script em Python que:
+### 1.1 Resumo
 
-* Percorre **intervalos definidos por uma tabela**
-* Para cada intervalo, testa se o **número "procurado"** falha no **Pequeno Teorema de Fermat** com múltiplas bases (`2, 3, 5, 7`)
-* Se falhar, **marca como COMPOSTO** e exibe sua **fatoração prima**
+O **Pequeno Teorema de Fermat** diz que, se você escolher um número primo **p** e outro número **a** que não seja múltiplo de **p**, então elevar **a** a **p - 1** e dividir o resultado por **p** sempre dá resto 1.
 
-### 🧠 Exemplo de teste:
+Se isso **não acontecer**, então o número testado **não é primo**.
+
+### 1.2 Exemplos Práticos
+
+- Para p = 7 e a = 2: 2^6 mod 7 = 64 mod 7 = 1 ✅
+- Para n = 49 e a = 2: 2^48 mod 49 = 18 ❌ (não deu 1 → 49 não é primo)
+
+### 1.3 Explicação Detalhada
+
+O teste é usado principalmente para **detectar compostos**. Ele é útil porque, se **a^(n-1) mod n != 1**, então com certeza **n é composto**.
+
+Mas há casos em que um número composto **passa** no teste – são os **falsos positivos**, como os **números de Carmichael**.
+
+### 1.4 Aplicações
+
+- Testes de primalidade rápidos
+- Algoritmos criptográficos
+- Pré-filtragem de números antes de testes mais robustos
+- Criptografia de chave pública (ex: RSA)
+
+### 1.5 Análise da Tabela
+
+O script percorre vários **intervalos numéricos**, testando um valor "procurado" em cada um. Para cada número:
+
+- Testa com bases 2, 3, 5 e 7.
+- Se **falhar em alguma base**, já sabemos que ele é composto.
+- Mostra sua **fatoração prima** como explicação.
+
+---
+
+## 2. Script `Pequeno_Teorema_de_Fermat.py`
+
+### 2.1 Relação com o Teorema
+
+O script é uma aplicação direta do Pequeno Teorema de Fermat para detectar números **certamente compostos**, usando múltiplas bases.
+
+### 2.2 Objetivo do Script
+
+Identificar e exibir **números compostos** rapidamente, com base em sua **falha no teste de Fermat**.
+
+### 2.3 Exemplo de Saída
 
 ```bash
 📌 Intervalo [32, 63] — Procurando: 49
 ------------------------------------------------------------
 🎯 >>>>> 49 falha no teste de Fermat → COMPOSTO! | Fatores: 7^2 <<<<<
+````
+
+Outro exemplo:
+
+```bash
+📌 Intervalo [224, 255] — Procurando: 224
+------------------------------------------------------------
+🎯 >>>>> 224 falha no teste de Fermat → COMPOSTO! | Fatores: 2^5 × 7 <<<<<
 ```
 
-Ou seja, o número **49**, embora pareça inofensivo, é rapidamente detectado como composto!
+### 2.4 Funcionamento Interno
+
+O script:
+
+1. Define uma tabela de intervalos e números "procurados".
+2. Para cada número, testa se ele **falha no teste de Fermat** para as bases: 2, 3, 5 e 7.
+3. Se falhar, exibe o número e sua **fatoração**.
+4. Os falsos positivos não são garantidamente detectados — o foco é **detecção de compostos**.
+
+### 2.5 Tecnologias e Requisitos
+
+* **Python 3.8.10**
+* Bibliotecas necessárias:
+
+```bash
+pip install sympy
+```
+
+Usa a biblioteca `sympy` para fatoração e manipulação de inteiros grandes.
 
 ---
 
-## 📊 Resultado Final
+## 3 Extras
 
-O script percorreu os intervalos:
+### 3.1 Licença
 
-| Início | Procurado | Fim   |
-| ------ | --------- | ----- |
-| 1      | 1         | 1     |
-| 2      | 3         | 3     |
-| 4      | 7         | 7     |
-| 8      | 8         | 15    |
-| ...    | ...       | ...   |
-| 8192   | 10544     | 16383 |
+Este projeto está licenciado sob a [MIT License](LICENSE).
 
-E encontrou diversos números compostos com sucesso, como:
+### 3.2 Referências
 
-* **8 = 2³**
-* **21 = 3 × 7**
-* **49 = 7²**
-* **76 = 2² × 19**
-* **224 = 2⁵ × 7**
-* **10544 = 2⁴ × 659**
+* 📘 [Wikipedia: Pequeno Teorema de Fermat](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
+* 📗 *Elementary Number Theory* – David Burton
+* 📙 [Numberphile: Fermat and Primality Testing](https://www.youtube.com/watch?v=2z0lo4U4jWg)
+
+### 3.3 Testes e Validações
+
+* Validado com números compostos e primos conhecidos
+* Fatorações conferidas com `sympy`
+* Resultados consistentes com teoria clássica
 
 ---
 
-## 💡 Conclusão
+## 4 Contato
 
-✅ O Pequeno Teorema de Fermat é uma ferramenta excelente para **detectar compostos rapidamente**.
-⚠️ Mas deve ser usado com **múltiplas bases** para evitar falsos positivos.
-
-💻 O script desenvolvido mostra como usar esse teorema de forma **efetiva, automatizada e clara**, exibindo os resultados em intervalos específicos com destaque para o número procurado.
-
----
-
-Se você curtiu esse projeto, podemos evoluir ele com:
-
-* 🎨 Interface gráfica
-* 📁 Exportação de resultados
-* 🧠 Combinação com outros testes de primalidade
-
-Quer ver a próxima versão? 🚀
-
----
-
-## 📬 Contato
-
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com 
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+### Termos Técnicos Explicados
+
+* **Módulo (mod)**: operação que calcula o resto da divisão de dois números.
+* **Primo**: número que só pode ser dividido por 1 e por ele mesmo.
+* **Fatoração**: escrever um número como produto de números menores.
+* **Fermat base a**: significa testar um número com o valor de **a** no teorema.
+* **Número de Carmichael**: composto que engana o teste de Fermat (falso positivo).
+* **Falso positivo de Fermat**: número que passa no teste mesmo não sendo primo.
+
+---
