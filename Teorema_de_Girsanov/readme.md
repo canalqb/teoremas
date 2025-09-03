@@ -1,88 +1,172 @@
-# 🚀 Modelagem e Simulação de $y$ em função de $x$ usando Ajuste Polinomial e Teorema de Girsanov 🎲
+# 🎲 - Teorema de Girsanov
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![LGN](https://img.shields.io/badge/Teorema-Girsanov-ff69b4.svg)](https://en.wikipedia.org/wiki/Girsanov_theorem)
 
-Bem-vindo(a)! Neste projeto, **exploramos a magia da modelagem matemática** para entender e prever o comportamento da variável $y$ em função de $x$, usando dados interessantes e um toque do poderoso *Teorema de Girsanov*. Vamos além da simples previsão: simulamos cenários estocásticos para captar a incerteza real do mundo!
+## Frase do Teorema
 
----
-
-## ✨ Sobre o Teorema de Girsanov
-
-O **Teorema de Girsanov** é um dos grandes heróis da teoria dos processos estocásticos! Ele permite *mudar a medida de probabilidade*, ajustando a tendência (ou *drift*) de processos aleatórios como o movimento browniano — essencial para finanças, física e muito mais.
-
-Aqui, usamos esse conceito para **simular o comportamento realista de $y$**, adicionando um componente aleatório que reflete as variações naturais que um modelo fixo não captura.
+> *Se mudarmos o ponto de vista sobre a aleatoriedade de um processo, podemos ajustar sua tendência como se estivéssemos "mudando o mundo".* – Em outras palavras: com o Teorema de Girsanov, é possível transformar um processo aleatório com uma certa tendência (ou direção) em outro com comportamento diferente, o que é muito útil para simulações e previsões.
 
 ---
 
-## 📊 Os Dados
+## Sumário
 
-Temos uma tabela de tripletas $(x, y, z)$, onde $x$ e $z$ são potências de 2, com valores que mostram um crescimento interessante:
-
-```
-[
- (1, 1, 1), (2, 3, 3), (4, 7, 7), (8, 8, 15), (16, 21, 31),
- (32, 49, 63), (64, 76, 127), (128, 224, 255), (256, 467, 511),
- (512, 514, 1023), (1024, 1155, 2047), (2048, 2683, 4095),
- (4096, 5216, 8191), (8192, 10544, 16383), (16384, 26867, 32767),
- (32768, 51510, 65535)
-]
-```
-
----
-
-## 🔧 Funcionalidades do Projeto
-
-* **Ajuste polinomial de grau 2** para modelar $y$ como função de $x$, capturando o crescimento não linear.
-* **Previsão inteligente** do valor de $y$ para $x=65536$ — e comparamos com o valor real conhecido!
-* **Simulação estocástica** com 1000 amostras, adicionando ruído gaussiano para representar a incerteza natural do processo.
-* **Gráfico interativo e elegante** com Plotly, mostrando os pontos reais e simulados, com legendas informativas ao passar o mouse. Visualize e explore!
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)
+  * [1.1 Resumo](#11-resumo)
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
+  * [1.4 Aplicações](#14-aplicações)
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)
+* [2. Script `Teorema_de_Girsanov.py`](#2-script-teorema_de_girsanovpy)
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
+* [3 Extras](#3-extras)
+  * [3.1 Licença](#31-licença)
+  * [3.2 Referências](#32-referencias)
+  * [3.3 Testes e Validações](#33-testes-e-validações)
+* [4 Contato](#4-contato)
+* [5. Nota](#5-nota)
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## 1 Introdução ao Teorema
 
-1. Instale as dependências:
+### 1.1 Resumo
 
-```bash
-pip install numpy pandas scikit-learn plotly
-```
+O **Teorema de Girsanov** permite simular diferentes cenários de processos aleatórios, mudando a *maneira como vemos o acaso*. Ele é muito usado para criar **modelos financeiros e físicos mais realistas**, especialmente quando queremos incluir ou remover tendências de comportamento ao longo do tempo.
 
-2. Execute o script Python:
+### 1.2 Exemplos Práticos
 
-```bash
-python modelagem_simulacao.py
-```
+- Simular o preço de uma ação em mercados com diferentes níveis de risco
+- Representar partículas em movimento afetadas por campos externos
+- Gerar múltiplos futuros possíveis em previsões econômicas
 
-3. Observe a tabela impressa, a previsão para $x=65536$, e um gráfico interativo abrir no seu navegador.
+### 1.3 Explicação Detalhada
+
+Normalmente, usamos processos aleatórios que se comportam de forma neutra (sem tendência). O Teorema de Girsanov mostra como mudar a **distribuição de probabilidade** de tal processo para simular cenários com outra tendência ou direção. É como *mudar a regra do jogo, mantendo os dados base*.
+
+### 1.4 Aplicações
+
+- Finanças quantitativas
+- Modelos climáticos e físicos
+- Inteligência artificial para jogos de simulação
+- Engenharia de sistemas estocásticos
+
+### 1.5 Análise da Tabela
+
+O script utiliza uma tabela com dados do tipo `(x, y, z)`, onde:
+
+- `x` e `z` crescem como potências de 2
+- `y` cresce de forma mais "natural", com oscilações realistas
+
+A previsão do valor `y` para `x = 65536` é feita com base nesse padrão, com e sem ruído estocástico.
 
 ---
 
-## 🎯 Exemplo da Saída Esperada
+## 2. Script `Teorema_de_Girsanov.py`
+
+### 2.1 Relação com o Teorema
+
+Este script aplica o conceito do Teorema de Girsanov de forma adaptada e acessível: **simulando incertezas** sobre uma previsão polinomial feita com base em dados reais, e adicionando variações aleatórias controladas.
+
+### 2.2 Objetivo do Script
+
+- Ajustar um modelo polinomial de grau 2 para prever `y` com base em `x`
+- Realizar **1000 simulações estocásticas**, refletindo diferentes possíveis resultados
+- Mostrar a previsão para `x = 65536` com e sem ruído
+- Exibir os dados reais, previstos e simulados em um **gráfico interativo**
+
+### 2.3 Exemplo de Saída
 
 ```
+
 Tabela de comparação:
-       x      y      z
+x      y      z
 0      1      1      1
 1      2      3      3
 2      4      7      7
 ...
 15  32768  51510  65535
-
+```
 Previsão do modelo para x=65536: y = 94012
 Valor real conhecido: y = 95823
+
+
+### 2.4 Funcionamento Interno
+
+1. O script recebe dados no formato `(x, y, z)`
+2. Ajusta um polinômio de grau 2 com `numpy`
+3. Simula 1000 valores para `x = 65536`, adicionando ruído com `numpy.random.normal`
+4. Mostra:
+   - A previsão média
+   - O desvio (grau de incerteza)
+   - Um gráfico interativo com todos os resultados
+
+### 2.5 Tecnologias e Requisitos
+
+* Python 3.8.10
+* Bibliotecas necessárias:
+  - `numpy`
+  - `pandas`
+  - `scikit-learn`
+  - `plotly`
+
+Instale as dependências com:
+
+```bash
+pip install numpy pandas scikit-learn plotly
+````
+
+Execute com:
+
+```bash
+python Teorema_de_Girsanov.py
 ```
 
 ---
 
-## 💡 Considerações Finais
+## 3 Extras
 
-* A simulação com o Teorema de Girsanov aqui é **uma simplificação inspiradora** para ilustrar a ideia de mudança de medida e comportamento estocástico.
-* O modelo polinomial é simples, mas poderoso — sinta-se livre para experimentar outras técnicas de regressão e machine learning!
-* Visualizações interativas tornam a análise muito mais rica e intuitiva.
+### 3.1 Licença
 
---- 
+Este projeto está licenciado sob a Licença MIT. Sinta-se livre para usar, modificar e distribuir com os devidos créditos.
 
-## 📬 Contato
+### 3.2 Referências
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* [Teorema de Girsanov – Wikipedia](https://en.wikipedia.org/wiki/Girsanov_theorem)
+* Livro: Stochastic Calculus for Finance – Steven Shreve
+* Simulações estocásticas – Khan Academy e Coursera
+
+### 3.3 Testes e Validações
+
+* Verificação da curva polinomial ajustada visualmente
+* Comparação entre `y_pred` e `y_real`
+* Simulações estocásticas repetidas com estatísticas (média e desvio)
+
+---
+
+## 4 Contato
+
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+📘 **Glossário de termos técnicos usados neste projeto:**
+
+* **Estocástico**: significa aleatório, ou seja, com incertezas naturais.
+* **Ruído Gaussiano**: pequenas variações geradas por sorteios aleatórios com base em uma distribuição parecida com o "sino da normal".
+* **Drift (tendência)**: direção média que um processo segue ao longo do tempo.
+* **Medida de probabilidade**: conjunto de regras que determina a chance de cada resultado acontecer.
+* **Simulação**: processo de testar várias possibilidades para entender o comportamento de um sistema.
+* **Distribuição normal**: tipo de sorteio onde valores próximos da média são mais prováveis.
+* **Desvio padrão**: quanto os resultados variam, em média, em relação à média geral. 
