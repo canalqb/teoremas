@@ -1,97 +1,164 @@
-📚 O Teorema de Glivenko-Cantelli
+# 📚 - Teorema de Glivenko-Cantelli  
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![Glivenko-Cantelli](https://img.shields.io/badge/Teorema-Glivenko-Cantelli-ff69b4.svg)](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem)
 
-Imagine lançar uma moeda mil vezes. Você não saberá o resultado de cada lançamento,  
-mas, com o tempo, verá um padrão emergir: a frequência de caras e coroas tende a se estabilizar.  
-Agora, imagine isso acontecendo não com moedas, mas com **qualquer distribuição de probabilidade**.
+## Frase do Teorema
 
-O Teorema de Glivenko-Cantelli nos diz exatamente isso:  
-**à medida que aumentamos o tamanho de uma amostra aleatória, a distribuição empírica**  
-(construída a partir dos dados observados) **converge uniformemente** para a distribuição teórica.
+> À medida que aumentamos o tamanho de uma amostra aleatória, a distribuição observada nos dados (chamada de distribuição empírica) se aproxima de forma uniforme da distribuição verdadeira (teórica) que gerou esses dados – ou seja, com mais dados, a amostra “revela” a verdadeira forma da distribuição.
 
-Ou, poeticamente:  
-> “Com paciência suficiente, o mundo observável se curva à ordem invisível da teoria.”
+## Sumário
 
-✨ O que este script faz?
-
-Este script é um experimento visual e numérico inspirado nesse teorema.
-
-Para diferentes valores de `A`, geramos amostras aleatórias de tamanho `n = 2^(A+1) - 1`  
-da distribuição normal padrão. Depois, comparamos a **CDF empírica** (acumulada dos dados)  
-com a **CDF teórica** (da normal padrão).
-
-Queremos encontrar **o ponto de maior diferença** entre essas duas curvas —  
-aquele exato valor onde a teoria e a prática mais discordam.
-
-Esse ponto (x) é então mapeado para o intervalo inteiro `[2^A, 2^(A+1) - 1]`  
-resultando em um número curioso chamado aqui de **‘PROCURANDO’**.
-
-📊 Saída esperada
-
-C:\Users\Notebook\Desktop\teoremas>Glivenko_Cantelli
-
-2^A        PROCURANDO      2^(A+1)-1  
-1          '1              1  
-2          '3              3  
-4          '5              7  
-8          '10             15  
-16         '29             31  
-32         '57             63  
-64         '101            127  
-128        '184            255  
-256        '438            511  
-512        '785            1023  
-1024       '1586           2047  
-2048       '2479           4095  
-4096       '6905           8191  
-
-Cada linha representa uma busca:  
-quanto mais dados, mais perto estamos da verdade — e mais longe da surpresa.
-
-🔍 Extras curiosos
-
-Você também encontrará uma pequena brincadeira no final do código:  
-dada uma posição desejada dentro de um intervalo, qual seria o valor de `x` na normal  
-que o geraria? Isso é feito invertendo a CDF com a função `ppf`.
-
-Exemplo:  
-x que gera '21' no intervalo [16, 31] = -0.1257  
-x que gera '49' no intervalo [32, 63] = 0.4602  
-
-Pequenos mapas de volta ao centro da curva.
-
-⚙️ Como usar
-
-1. Salve o código como `glivenko_cantelli.py`  
-2. Certifique-se de ter Python 3 e os pacotes `numpy` e `scipy` instalados  
-3. Execute no terminal com:
-
-   > python glivenko_cantelli.py
-
-💡 Requisitos
-
-- Python 3.x  
-- NumPy  
-- SciPy  
-
-🌌 Por quê?
-
-Porque a matemática tem algo de místico.  
-Porque os dados falam, mas a teoria sussurra por trás deles.  
-E porque, às vezes, tudo que queremos é ver a ordem emergir do caos —  
-linha por linha, número por número.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)  
+* [2. Script `glivenko_cantelli.py`](#2-script-glivenko_cantellipy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referencias)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)  
 
 ---
 
-Glivenko. Cantelli. Dois nomes.  
-Um lembrete eterno de que com o tempo, tudo se revela.
+## 1. Introdução ao Teorema
 
+### 1.1 Resumo  
+O **Teorema de Glivenko-Cantelli** diz que se você pegar uma amostra grande o suficiente de dados aleatórios vindos de qualquer distribuição, a forma dos dados (distribuição empírica) vai ficar cada vez mais parecida com a forma da distribuição verdadeira (distribuição teórica).
 
----  
- 
+### 1.2 Exemplos Práticos  
+Imagine lançar uma moeda mil vezes: a proporção de caras e coroas observada ficará próxima da verdadeira probabilidade (50% cada).  
+O mesmo vale para dados normais, dados de altura, notas escolares — com muitos dados, a forma observada fica parecida com a esperada.
 
-## 📬 Contato
+### 1.3 Explicação Detalhada  
+A distribuição empírica é basicamente um gráfico que conta “quantos dados estão abaixo de cada valor”. A distribuição teórica é a “curva ideal” que conhecemos na matemática.  
+O teorema garante que, conforme aumentamos a quantidade de dados, a maior diferença entre essas duas curvas diminui e tende a zero.
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+### 1.4 Aplicações  
+- Estatística: para validar modelos e hipóteses  
+- Machine learning: para entender se os dados seguem uma certa distribuição  
+- Processamento de sinais e dados em geral  
+
+### 1.5 Análise da Tabela  
+
+O script mostra, para amostras cada vez maiores (tamanho `n` próximo de potências de 2), onde ocorre a maior diferença entre a CDF observada e a teórica, chamada aqui de **‘PROCURANDO’**.  
+
+| 2^A  | PROCURANDO | 2^(A+1)-1 |  
+|------|------------|-----------|  
+| 1    | 1          | 1         |  
+| 2    | 3          | 3         |  
+| 4    | 5          | 7         |  
+| 8    | 10         | 15        |  
+| 16   | 29         | 31        |  
+| 32   | 57         | 63        |  
+| 64   | 101        | 127       |  
+| 128  | 184        | 255       |  
+| 256  | 438        | 511       |  
+| 512  | 785        | 1023      |  
+| 1024 | 1586       | 2047      |  
+| 2048 | 2479       | 4095      |  
+| 4096 | 6905       | 8191      |  
+
+Cada linha mostra que quanto maior a amostra, maior a busca pela verdade (menor diferença entre as distribuições).
+
+---
+
+## 2. Script `glivenko_cantelli.py`
+
+### 2.1 Relação com o Teorema  
+O script é um experimento visual que demonstra o Teorema de Glivenko-Cantelli, mostrando como a diferença entre a distribuição empírica e teórica diminui conforme aumentamos o número de dados.
+
+### 2.2 Objetivo do Script  
+- Gerar amostras da distribuição normal padrão (média zero, desvio padrão um)  
+- Calcular a distribuição acumulada empírica (CDF dos dados)  
+- Comparar com a CDF teórica da normal padrão  
+- Encontrar o ponto com a maior diferença entre as duas CDFs  
+- Mapear esse ponto para um número inteiro dentro de um intervalo para análise  
+
+### 2.3 Exemplo de Saída  
+
+```bash
+2^A        PROCURANDO      2^(A+1)-1  
+1          1              1  
+2          3              3  
+4          5              7  
+8          10             15  
+16         29             31  
+32         57             63  
+64         101            127  
+128        184            255  
+256        438            511  
+512        785            1023  
+1024       1586           2047  
+2048       2479           4095  
+4096       6905           8191  
+````
+
+Além disso, o script mostra exemplos de “mapas inversos”, que indicam qual valor na distribuição normal corresponde a posições específicas no intervalo.
+
+### 2.4 Funcionamento Interno
+
+* Usa funções do `numpy` e `scipy` para gerar dados e calcular CDF e sua inversa (ppf).
+* Para cada valor de A, cria uma amostra de tamanho n = 2^(A+1) - 1.
+* Calcula a maior diferença entre CDF empírica e teórica (ponto ‘PROCURANDO’).
+* Exibe resultados formatados para fácil compreensão.
+
+### 2.5 Tecnologias e Requisitos
+
+* Python 3.8.10
+* Pacotes `numpy` e `scipy` instalados (`pip install numpy scipy`)
+
+Executar com:
+
+```bash
+python glivenko_cantelli.py
+```
+
+---
+
+## 3 Extras
+
+### 3.1 Licença
+
+Este projeto está sob **Licença MIT**. Consulte o arquivo LICENSE para detalhes.
+
+### 3.2 Referências
+
+* [Glivenko-Cantelli theorem - Wikipedia](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem)
+* Documentação SciPy: [https://docs.scipy.org/doc/scipy/reference/stats.html](https://docs.scipy.org/doc/scipy/reference/stats.html)
+
+### 3.3 Testes e Validações
+
+Testado em Python 3.8.10 com `numpy` e `scipy` nas versões recentes, o script executa corretamente e mostra resultados coerentes com o teorema.
+
+---
+
+## 4 Contato
+
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+**Distribuição empírica:** gráfico que mostra a frequência acumulada dos dados observados até certo valor.
+**Distribuição teórica:** curva matemática que descreve como os dados deveriam se comportar, se tirássemos infinitos dados.
+**CDF (Função Distribuição Acumulada):** função que para cada valor mostra a proporção dos dados que são menores ou iguais a ele.
+**Ponto de maior diferença:** valor onde a diferença entre a distribuição empírica e a teórica é maior.
+**ppf (Percent Point Function):** função que calcula o valor correspondente a uma dada probabilidade acumulada — é o “inverso” da CDF.
+
+---
