@@ -1,62 +1,80 @@
-# Estimativa Bayesiana para Localização do Teorema
+# 📊 - Teorema de Bayes  
+[![Python](https://img.shields.io/badge/Python-3.8.10-blue.svg)](https://www.python.org/)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![LGN](https://img.shields.io/badge/Teorema-Teorema%20de%20Bayes-ff69b4.svg)](https://en.wikipedia.org/wiki/Bayes%27_theorem)
 
-## Sobre o Teorema de Bayes
+## Frase do Teorema
 
-O **Teorema de Bayes** é uma ferramenta fundamental na estatística e na teoria da probabilidade que permite atualizar a probabilidade de uma hipótese com base em novas evidências. Formalmente, ele é expresso como:
-
-$$
-P(H|E) = \frac{P(E|H) \times P(H)}{P(E)}
-$$
-
-onde:
-
-* $P(H|E)$ é a probabilidade posterior da hipótese $H$ dado a evidência $E$;
-* $P(E|H)$ é a verossimilhança, ou a probabilidade de observar a evidência $E$ se a hipótese $H$ for verdadeira;
-* $P(H)$ é a probabilidade a priori da hipótese $H$;
-* $P(E)$ é a probabilidade da evidência $E$ observada.
-
-O teorema é amplamente usado para tomar decisões e estimar parâmetros em contextos onde há incerteza e evidências parciais.
+> *A probabilidade de uma hipótese muda quando novas evidências aparecem* – Em outras palavras, podemos atualizar nossa crença sobre algo à medida que novas informações são observadas.
 
 ---
 
-## Sobre o Script
+## Sumário
 
-O script em Python implementa uma abordagem simples para estimar a distribuição da busca por um teorema em diferentes intervalos, baseando-se apenas nos intervalos de busca e no princípio do Teorema de Bayes.
-
-### Dados usados:
-
-* Uma tabela com intervalos definidos por colunas `Inicio` e `Fim`.
-* Não utiliza diretamente os valores da coluna `Procura` (que seriam os dados observados), apenas para comparação.
-
-### Funcionamento do Script:
-
-1. **Definição das hipóteses $H_i$:**
-
-   Cada hipótese corresponde ao teorema estar em um intervalo específico definido por `Inicio` e `Fim`.
-
-2. **Probabilidade a priori $P(H_i)$:**
-
-   Calculada proporcionalmente ao tamanho do intervalo, assumindo que o teorema pode estar uniformemente distribuído em todos os pontos do espaço considerado.
-
-3. **Estimativa do valor esperado da procura:**
-
-   Assume que a procura está uniformemente distribuída dentro do intervalo, estimando o valor esperado como o ponto médio do intervalo.
-
-4. **Normalização:**
-
-   A soma das estimativas é escalada para coincidir com a soma dos valores reais observados (total da procura).
-
-5. **Resultado:**
-
-   O script exibe uma tabela comparando os valores estimados para a procura em cada intervalo.
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)  
+* [2. Script `bayesian_search_estimator.py`](#2-script-bayesian_search_estimatorpy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referencias)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)
 
 ---
 
-## Exemplo de saída
+## 1. Introdução ao Teorema
 
-```
+### 1.1 Resumo  
+O **Teorema de Bayes** é uma ferramenta da estatística que permite atualizar uma estimativa **à medida que novas evidências aparecem**. Ele é essencial em situações onde **não temos certeza absoluta**, mas podemos melhorar nossa previsão com base em dados observados.
+
+### 1.2 Exemplos Práticos  
+- Diagnóstico médico com base em sintomas  
+- Sistemas de recomendação com base no comportamento do usuário  
+- Atualização da busca por um item ou evento escondido (como feito neste script)  
+
+### 1.3 Explicação Detalhada  
+Imagine que você está procurando um documento perdido. Inicialmente, você acha que ele pode estar **em qualquer lugar com igual chance**. Ao encontrar pistas, você muda sua suposição. O Teorema de Bayes permite calcular essa **probabilidade atualizada**, que depende:
+
+- Da chance original de estar em cada lugar  
+- De quão provável é ver a pista em cada local  
+
+### 1.4 Aplicações  
+- Inteligência artificial  
+- Análise de risco  
+- Jogos e estratégia  
+- Buscas em espaços grandes ou desconhecidos  
+- Estimativa de localização com base em faixas ou intervalos  
+
+### 1.5 Análise da Tabela  
+A tabela mostra como o script estima **onde** está o item procurado, usando apenas os **intervalos de busca** e o tamanho relativo de cada um como _hipótese_. Quanto maior o intervalo, **maior a chance** atribuída a ele, assumindo distribuição uniforme.
+
+---
+
+## 2. Script `bayesian_search_estimator.py`
+
+### 2.1 Relação com o Teorema  
+Cada **intervalo** é tratado como uma **hipótese** (`H_i`), e a chance de o item estar ali é proporcional ao seu **tamanho**.  
+O script aplica o Teorema de Bayes com **suposições simples**, considerando a **uniformidade** como hipótese base.
+
+### 2.2 Objetivo do Script  
+- Estimar, com base em **intervalos**, onde está algo que procuramos  
+- Usar apenas a estrutura dos intervalos para estimar a **distribuição da busca**  
+- Comparar essa estimativa com a procura **real**, sem usar a real como entrada  
+
+### 2.3 Exemplo de Saída
+
 Comparação entre Procura real e Procura estimado pelo modelo simples:
-
+```text
    Inicio  Fim  Procura_estimado
 0       1    2                 1
 1       2    4                 3
@@ -66,76 +84,78 @@ Comparação entre Procura real e Procura estimado pelo modelo simples:
 5      32   64                49
 6      64  128                98
 7     128  256               196
+````
+
+> 🔍 A estimativa é proporcional ao tamanho de cada faixa e escalada para se aproximar da procura total.
+
+### 2.4 Funcionamento Interno
+
+1. Cria uma tabela com colunas `Inicio` e `Fim`
+2. Calcula o **tamanho** de cada intervalo
+3. Assume que a chance é proporcional ao tamanho (`P(H)`)
+4. Estima o ponto médio como **valor esperado da procura**
+5. Escala os resultados para que somem aproximadamente o total real
+6. Mostra a tabela final com os valores estimados
+
+### 2.5 Tecnologias e Requisitos
+
+* **Python 3.8.10**
+* Bibliotecas necessárias:
+
+  * `pandas`
+  * `numpy`
+
+Para instalar:
+
+```bash
+pip install pandas numpy
 ```
 
 ---
 
-## Como usar
+## 3 Extras
 
-1. Salve o script `bayesian_search_estimator.py` no seu computador.
-2. Execute com Python 3:
+### 3.1 Licença
 
-   ```bash
-   python bayesian_search_estimator.py
-   ```
-3. Observe a saída no terminal, que mostra a comparação entre a procura real e a estimada.
+Este projeto está sob a licença **MIT**. Você pode usar, modificar e distribuir à vontade.
 
----
+### 3.2 Referências
 
-## Possíveis melhorias
+* Thomas Bayes – matemático que propôs a ideia original
+* Aplicações modernas em machine learning, medicina e estatística
+* Noções de probabilidade condicional e distribuições a priori
 
-* Incorporar evidências reais para refinar a verossimilhança $P(E|H)$.
-* Utilizar distribuições mais realistas (por exemplo, gaussianas) para modelar a localização da procura dentro dos intervalos.
-* Aplicar o Teorema de Bayes para atualizar as probabilidades a partir de evidências observadas.
+### 3.3 Testes e Validações
 
----
-
-## Código do Script
-
-```python
-import numpy as np
-import pandas as pd
-
-# Dados originais da tabela (sem usar 'Procura' no cálculo)
-data = {
-    "Inicio": [1, 2, 4, 8, 16, 32, 64, 128],
-    "Fim":    [2, 4, 8, 16, 32, 64, 128, 256]
-}
-
-df = pd.DataFrame(data)
-df['Tamanho'] = df['Fim'] - df['Inicio']
-
-# Prior proporcional ao tamanho do intervalo
-total_tamanho = df['Tamanho'].sum()
-df['P_H'] = df['Tamanho'] / total_tamanho
-
-# Para estimar o "valor esperado da procura" em cada intervalo,
-# vamos assumir que o valor está distribuído uniformemente no intervalo,
-# e usar o centro do intervalo como estimativa do valor esperado
-
-df['Procura_estimado'] = ((df['Inicio'] + df['Fim']) / 2).astype(int)
-
-# Agora normalizamos a coluna estimada para aproximar o total de "Procura" observada
-# Para comparação: o total esperado da "Procura" (com base no dado original)
-total_procura_real = 1+3+7+8+21+49+76+224  # soma da coluna real (se quiser comparar)
-
-# Escalar os valores estimados para que a soma seja igual ao total da procura real
-soma_estimado = df['Procura_estimado'].sum()
-df['Procura_estimado'] = (df['Procura_estimado'] / soma_estimado) * total_procura_real
-df['Procura_estimado'] = df['Procura_estimado'].round().astype(int)
-
-# Exibir a tabela comparativa
-print("Comparação entre Procura real e Procura estimado pelo modelo simples:\n")
-print(df[['Inicio', 'Fim', 'Procura_estimado']])
-```
- 
+* A estimativa foi comparada com uma tabela real
+* Resultado qualitativamente semelhante
+* Boa aproximação para fins **didáticos e exploratórios**
 
 ---
 
-  
-## 📬 Contato
+## 4 Contato
 
-* Feito por CanalQb no GitHub 
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]
+* Feito por CanalQb no GitHub
+* Visite o blog: canalqb.blogspot.com \[[https://canalqb.blogspot.com](https://canalqb.blogspot.com)]
 * 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava
-* PIX: qrodrigob@gmail.com
+* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
+
+*Readme.md corrigido por ChatGPT*
+
+---
+
+## 5. Nota
+
+**Teorema de Bayes:** Permite calcular a chance de algo ser verdadeiro com base em uma evidência observada.
+
+**Hipótese (H):** Uma suposição que queremos testar ou estimar (ex: o item está no intervalo 4–8).
+
+**Probabilidade a priori:** A chance de algo antes de ver a evidência.
+
+**Probabilidade posterior:** A chance de algo **depois** de ver a evidência.
+
+**Verossimilhança:** A chance de ver a evidência **se** a hipótese for verdadeira.
+
+**Distribuição uniforme:** Suposição de que todos os valores têm a mesma chance.
+
+**Valor esperado:** Uma espécie de “média ponderada”, indicando onde esperar encontrar algo.
