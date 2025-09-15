@@ -1,138 +1,166 @@
-# 🔺 - Brianchon
-
+# 🔷 - Teorema de Brianchon
 [![Python](https://img.shields.io/badge/Python-3.8.10-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Brianchon](https://img.shields.io/badge/Teorema-Brianchon-ff69b4.svg)](https://en.wikipedia.org/wiki/Brianchon's_theorem)
 
-## Frase do Conceito
+## Frase do Teorema
 
-> "Em um hexágono circunscrito a uma cônica, as três diagonais principais se encontram em um único ponto." – Simplificando, se você desenhar um hexágono ao redor de uma forma curva especial chamada cônica, as linhas que ligam os lados opostos desse hexágono sempre se cruzam em um ponto só.
+> *Seis retas tangentes a uma cônica formam um hexágono. Se esse hexágono for fechado e os lados forem pares opostos, então as três diagonais que conectam vértices opostos se cruzam em um único ponto.* – Esse resultado mostra como, mesmo em formas curvas, certos alinhamentos criam simetrias perfeitas e pontos fixos de interseção.
+
+---
 
 ## Sumário
 
-* [1. Introdução ao Conceito 📘](#1-introdução-ao-conceito-📘)
-
-  * [1.1 Resumo](#11-resumo)
-  * [1.2 Exemplos Práticos](#12-exemplos-práticos)
-  * [1.3 Explicação Detalhada](#13-explicação-detalhada)
-  * [1.4 Aplicações](#14-aplicações)
-  * [1.5 Análise Visual](#15-análise-visual)
-* [2. Scripts Relacionados `brianchon_simulacao.py` 🐍](#2-scripts-relacionados-brianchon_simulacaopy-🐍)
-
-  * [2.1 Relação com o Conceito](#21-relação-com-o-conceito)
-  * [2.2 Objetivo do Script](#22-objetivo-do-script)
-  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)
-  * [2.4 Funcionamento Interno](#24-funcionamento-interno)
-  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)
-* [3. Extras 🎁](#3-extras-🎁)
-
-  * [3.1 Licença](#31-licença)
-  * [3.2 Referências](#32-referencias)
-  * [3.3 Testes e Validações](#33-testes-e-validações)
-* [4. Contato 📬](#4-contato-📬)
-* [5. Nota 📝](#5-nota-📝)
+* [1. Introdução ao Teorema](#1-introdução-ao-teorema)  
+  * [1.1 Resumo](#11-resumo)  
+  * [1.2 Exemplos Práticos](#12-exemplos-práticos)  
+  * [1.3 Explicação Detalhada](#13-explicação-detalhada)  
+  * [1.4 Aplicações](#14-aplicações)  
+  * [1.5 Análise da Tabela](#15-análise-da-tabela)  
+* [2. Script `brianchon.py`](#2-script-brianchonpy)  
+  * [2.1 Relação com o Teorema](#21-relação-com-o-teorema)  
+  * [2.2 Objetivo do Script](#22-objetivo-do-script)  
+  * [2.3 Exemplo de Saída](#23-exemplo-de-saída)  
+  * [2.4 Funcionamento Interno](#24-funcionamento-interno)  
+  * [2.5 Tecnologias e Requisitos](#25-tecnologias-e-requisitos)  
+* [3 Extras](#3-extras)  
+  * [3.1 Licença](#31-licença)  
+  * [3.2 Referências](#32-referências)  
+  * [3.3 Testes e Validações](#33-testes-e-validações)  
+* [4 Contato](#4-contato)  
+* [5. Nota](#5-nota)  
 
 ---
 
-## 1. Introdução ao Conceito 📘
+## 1. Introdução ao Teorema
 
 ### 1.1 Resumo
-
-O Teorema de Brianchon é uma regra da geometria que fala sobre um hexágono especial — aquele que pode ser desenhado "ao redor" de uma curva chamada cônica (que pode ser uma elipse, parábola ou hipérbole). Ele mostra que se você traçar as três linhas que conectam lados opostos do hexágono, essas linhas sempre vão se cruzar em um mesmo ponto.
+O **Teorema de Brianchon** mostra como seis retas que tocam uma forma oval (chamada cônica) formam um padrão especial. Se essas seis retas fizerem um hexágono, então três linhas desenhadas dentro dele sempre se encontram em um único ponto.
 
 ### 1.2 Exemplos Práticos
-
-Imagine um hexágono desenhado ao redor de uma elipse (uma forma oval). Se você ligar os lados opostos (1º com 4º, 2º com 5º e 3º com 6º), as linhas vão se encontrar no mesmo ponto, mostrando uma simetria e propriedade especial dessa figura.
+- Engenharia de estruturas
+- Simulações com polígonos em geometria computacional
+- Modelagem de sistemas ópticos
 
 ### 1.3 Explicação Detalhada
-
-- Hexágono circunscrito: Um hexágono desenhado de forma que todos os seus lados toquem a curva da cônica.
-- Linhas diagonais principais: São linhas que conectam pares de lados opostos no hexágono.
-- O ponto de encontro dessas três linhas é único, mostrando uma propriedade importante da geometria projetiva.
+Imagine um oval e desenhe seis retas que tocam apenas um ponto dessa forma. Se você ligar essas retas de maneira ordenada, criando um hexágono, então as linhas que ligam vértices opostos vão se cruzar em um mesmo lugar — sempre.
 
 ### 1.4 Aplicações
+Esse tipo de relação geométrica aparece em áreas como:
+- Arquitetura
+- Design gráfico
+- Computação gráfica
+- Inteligência artificial com geometria simbólica
 
-- Design e modelagem geométrica
-- Computação gráfica e visualização
-- Estudo da geometria projetiva e propriedades de figuras curvas e poligonais
+### 1.5 Análise da Tabela
 
-### 1.5 Análise Visual
+**Saída esperada:**
+```
 
-Visualizar este teorema ajuda a entender conceitos de alinhamento e simetria em figuras complexas e pode ser ilustrado com programas que desenham hexágonos e cônicas.
+Ponto de interseção: (0.0000, 0.0000)
+
+Coordenadas dos pontos do hexágono:
+A: (6.0000, 0.0000)
+B: (3.0000, 3.4641)
+C: (-3.0000, 3.4641)
+D: (-6.0000, 0.0000)
+E: (-3.0000, -3.4641)
+F: (3.0000, -3.4641)
+
+```
 
 ---
 
-## 2. Scripts Relacionados `brianchon_simulacao.py` 🐍
+## 2. Script `brianchon.py`
 
-### 2.1 Relação com o Conceito
-
-Este script serve para simular a construção do hexágono circunscrito a uma cônica e traçar as diagonais para mostrar o ponto único de intersecção, confirmando visualmente o Teorema de Brianchon.
+### 2.1 Relação com o Teorema
+Este script demonstra visualmente o **Teorema de Brianchon**, permitindo que o usuário interaja com os pontos e observe em tempo real a formação do ponto de interseção das diagonais.
 
 ### 2.2 Objetivo do Script
-
-- Construir geometricamente um hexágono em torno de uma cônica
-- Calcular e traçar as linhas diagonais que ligam lados opostos
-- Mostrar a intersecção dessas linhas em um ponto único
+- Mostrar como os vértices de um hexágono tangente a uma elipse se relacionam.
+- Permitir mover os pontos do hexágono e observar o ponto de interseção mudar dinamicamente.
 
 ### 2.3 Exemplo de Saída
+Após rodar o script, você verá um gráfico interativo e no terminal algo como:
 
-O script exibe uma imagem ou gráfico mostrando:
+```
 
-- A cônica (elipse, por exemplo)
-- O hexágono circunscrito
-- As três linhas diagonais principais se cruzando em um ponto único destacado
+Ponto de interseção: (0.0000, 0.0000)
+
+Coordenadas dos pontos do hexágono:
+A: (6.0000, 0.0000)
+B: (3.0000, 3.4641)
+C: (-3.0000, 3.4641)
+...
+
+````
 
 ### 2.4 Funcionamento Interno
-
-- Definição da cônica (por exemplo, uma elipse)
-- Determinação dos seis pontos de tangência onde o hexágono toca a cônica
-- Construção dos lados do hexágono com base nesses pontos
-- Cálculo das linhas que conectam lados opostos
-- Cálculo do ponto de intersecção dessas linhas
-- Visualização gráfica usando bibliotecas Python como matplotlib
+- Usa `matplotlib` para criar a visualização.
+- Usa eventos do mouse para permitir mover os pontos.
+- Recalcula a interseção das diagonais automaticamente.
+- Mostra os dados no gráfico e também imprime no console.
 
 ### 2.5 Tecnologias e Requisitos
+- **Python 3.8.10**
+- Bibliotecas:
+  - `numpy`
+  - `matplotlib`
 
-- Python 3.8.10
-- Bibliotecas: matplotlib para gráficos, numpy para cálculos matemáticos
+Instale com:
+
+```bash
+pip install numpy matplotlib
+````
 
 ---
 
-## 3. Extras 🎁
+## 3. Extras
 
 ### 3.1 Licença
 
-Este projeto está licenciado sob a licença MIT.
+Este projeto está licenciado sob a **MIT License**.
 
 ### 3.2 Referências
 
-- Teorema de Brianchon – Wikipédia: https://pt.wikipedia.org/wiki/Teorema_de_Brianchon
-- Geometria Projetiva – Material didático básico
+* Wikipedia: [Teorema de Brianchon](https://en.wikipedia.org/wiki/Brianchon's_theorem)
+* Projeto visual baseado em [CanalQB](https://canalqb.blogspot.com)
 
 ### 3.3 Testes e Validações
 
-Testes gráficos foram realizados para diferentes formas cônicas e hexágonos, sempre confirmando a interseção única das diagonais.
+✅ Testado com Python 3.8.10
+✅ Testado no Windows 10
+✅ Compatível com Linux e MacOS (interface gráfica necessária)
 
 ---
 
-## 4. Contato 📬
+## 4 Contato
 
-* Feito por CanalQb no GitHub  
-* Visite o blog: canalqb.blogspot.com [https://canalqb.blogspot.com]  
-* 💸 Apoie o projeto via Bitcoin: 13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava  
-* PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)  
+* Feito por **CanalQb** no GitHub
+* Blog: [https://canalqb.blogspot.com](https://canalqb.blogspot.com)
+* 💸 Apoie o projeto via Bitcoin: `13Ve1k5ivByaCQ5yer6GoV84wAtf3kNava`
+* 📧 PIX: [qrodrigob@gmail.com](mailto:qrodrigob@gmail.com)
 
 *Readme.md corrigido por ChatGPT*
 
 ---
 
-## 5. Nota 📝
+## 5. Nota
 
-**Cônica:** Tipo de curva que inclui formas como elipse, parábola e hipérbole — curvas importantes em matemática e física.
+**cônica:**
+uma forma curva fechada, como uma elipse, parábola ou hipérbole.
 
-**Hexágono circunscrito:** Um hexágono desenhado de forma que seus lados toquem exatamente a curva da cônica.
+**diagonal:**
+uma linha que liga dois pontos não consecutivos de um polígono.
 
-**Tangência:** Quando uma linha toca uma curva em apenas um ponto, sem atravessá-la.
+**interseção:**
+o ponto onde duas ou mais linhas se cruzam.
 
-**Interseção:** O ponto onde duas ou mais linhas se cruzam.
+**tangente:**
+uma reta que toca uma curva em apenas um ponto sem cortá-la.
 
-**Geometria projetiva:** Ramo da matemática que estuda as propriedades das figuras que permanecem invariantes quando projetadas em diferentes planos. 
+**elipse:**
+uma forma oval fechada, parecida com um círculo achatado.
+
+**simetria:**
+um tipo de equilíbrio visual onde partes se repetem ou se refletem.
