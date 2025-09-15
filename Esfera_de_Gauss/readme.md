@@ -127,4 +127,3 @@ O script foi testado em Python 3.8.10. A saída foi verificada para garantir que
 **Imagem (no contexto de mapeamento)**: o resultado da aplicação de uma função em um conjunto, como os vetores normais mapeados para a esfera.  
 **Esfera unitária**: esfera de raio 1 usada como referência para medir direções e áreas.  
 **Mapa ou mapeamento**: uma regra ou função que associa cada ponto de um conjunto a um ponto de outro conjunto.  
-```
