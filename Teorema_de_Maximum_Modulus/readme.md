@@ -1,4 +1,3 @@
-```markdown
 # 📈 - Teorema do Máximo Módulo  
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)  
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
@@ -124,7 +123,3 @@ Os testes foram feitos com os valores gerados para os intervalos definidos, most
 **Máximo:** maior valor que uma função assume em um intervalo ou conjunto.  
 **Script:** programa de computador escrito para executar uma tarefa específica.  
 **Bibliotecas:** coleções de funções prontas que ajudam a programar mais rápido.
-
----
-
-```
