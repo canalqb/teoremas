@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, FFMpegWriter
+from matplotlib.animation import FuncAnimation
 from mpl_toolkits.mplot3d import Axes3D
 
 # Parâmetros de entrada
@@ -61,11 +61,5 @@ def update(frame):
 frames = len(points)
 ani = FuncAnimation(fig, update, frames=frames, init_func=init, blit=False)
 
-# Salvar como vídeo MP4 com duração de 20 segundos
-fps = frames / 20  # 20 segundos de duração total
-writer = FFMpegWriter(fps=fps)
-
-ani.save("lebesgue_visualization.mp4", writer=writer)
-
-# Mostrar visualização (opcional)
+# Mostrar visualização
 plt.show()
