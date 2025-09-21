@@ -6,6 +6,8 @@
 
 ---
 
+[![Siga o CanalQb]([https://img.youtube.com/vi/Km-ucmJwvEw/hqdefault.jpg](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRbdfT9pahbl33vIY111cMSCinslIwPR11m8cfO9wIK3D6Nhb3z6Q50CLnuPFeGutjqwgCkBvm7IOSroMK6cDOY8ntqwfDfe6sOUHNLsa8Rnq6qcOVEyJUSK-3Gt8-Cndemuta_Sk4B1c8AyWL3iWfwnYBWcKmdpxovS3LnuKFp_ngjrMna0cjvPcC2pp9/s320/CanalQb%20-%20Python%20-%20Caratheodory916.png))](https://youtu.be/xSp4gO8S-8Q)
+
 ## 📚 Sumário
 
 * [1. Introdução ao Teorema](#1-introdução-ao-teorema)
