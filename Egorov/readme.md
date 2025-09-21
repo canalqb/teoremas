@@ -9,6 +9,7 @@
 > *Se temos uma sequência de funções que converge ponto a ponto para uma função limite em um intervalo, então para qualquer margem de erro positiva, existe um subconjunto grande desse intervalo no qual essa convergência é uniforme.* – Ou seja, mesmo que as funções se aproximem da função final de forma “bagunçada” ponto a ponto, ainda conseguimos achar uma parte grande onde essa aproximação é “organizada” e ocorre de forma suave.
 
 ---
+[![Siga o CanalQb](https://img.youtube.com/vi/Km-ucmJwvEw/hqdefault.jpg)](https://youtu.be/Km-ucmJwvEw)
 
 ## Sumário
 
