@@ -1,9 +1,0 @@
-bit
-matplotlib
-numpy
-pandas
-plotly
-psutil
-scipy
-scikit-learn
-sympy
